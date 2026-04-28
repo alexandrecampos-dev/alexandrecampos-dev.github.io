@@ -1,35 +1,108 @@
 ---
 ---
 
-<nav style="position:fixed;top:0;left:0;right:0;z-index:50;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);background:rgba(10,10,15,0.80);border-bottom:1px solid rgba(255,255,255,0.06);">
-  <div style="max-width:72rem;margin:0 auto;padding:0 2rem;height:56px;display:flex;align-items:center;justify-content:space-between;">
-
-    <a href="#inicio" style="font-family:'JetBrains Mono',monospace;font-size:.88rem;font-weight:600;color:#818cf8;text-decoration:none;letter-spacing:.02em;">
-      &lt;<span style="color:#c8cde8;">ac</span> <span style="color:#67e8f9;">/</span>&gt;
+<nav>
+  <div class="nav-inner">
+    <a href="#inicio" class="nav-logo">
+      &lt;<span class="logo-name">ac</span> <span class="logo-slash">/</span>&gt;
     </a>
 
-    <div style="display:flex;gap:2rem;align-items:center;">
+    <div class="nav-links">
       {[
-        { href: "#projetos",   label: "projetos" },
-        { href: "#stack",      label: "stack" },
-        { href: "#experiencia",label: "experiência" },
-        { href: "#contato",    label: "contato" },
+        { href: "#projetos",    label: "projetos" },
+        { href: "#stack",       label: "stack" },
+        { href: "#experiencia", label: "experiência" },
+        { href: "#contato",     label: "contato" },
       ].map(({ href, label }) => (
-        <a href={href}
-          style="font-family:'JetBrains Mono',monospace;color:#3a3a58;text-decoration:none;font-size:.8rem;font-weight:500;letter-spacing:.03em;transition:color .2s;"
-          onmouseover="this.style.color='#818cf8'"
-          onmouseout="this.style.color='#3a3a58'">
-          {label}
-        </a>
+        <a href={href} class="nav-link">{label}</a>
       ))}
 
-      <a href="https://github.com/alexandrecampos-dev" target="_blank" rel="noopener"
-        style="background:rgba(99,102,241,0.08);border:1px solid rgba(99,102,241,0.22);color:#a5b4fc;padding:.32rem .85rem;border-radius:6px;font-size:.78rem;font-weight:600;text-decoration:none;transition:all .2s;display:flex;align-items:center;gap:.4rem;"
-        onmouseover="this.style.background='rgba(99,102,241,0.16)';this.style.borderColor='rgba(99,102,241,0.45)'"
-        onmouseout="this.style.background='rgba(99,102,241,0.08)';this.style.borderColor='rgba(99,102,241,0.22)'">
-        <i class="fa-brands fa-github" style="font-size:.85rem;"></i>
-        GitHub
+      <a href="https://github.com/alexandrecampos-dev" target="_blank" rel="noopener" class="nav-github">
+        <i class="fa-brands fa-github"></i>
+        <span>GitHub</span>
       </a>
     </div>
   </div>
 </nav>
+
+<style>
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 50;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    background: rgba(10,10,15,0.82);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .nav-inner {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 0 2rem;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .88rem;
+    font-weight: 600;
+    color: #818cf8;
+    text-decoration: none;
+    letter-spacing: .02em;
+    white-space: nowrap;
+  }
+  .logo-name { color: #c8cde8; }
+  .logo-slash { color: #67e8f9; }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .nav-link {
+    font-family: 'JetBrains Mono', monospace;
+    color: #3a3a58;
+    text-decoration: none;
+    font-size: .8rem;
+    font-weight: 500;
+    letter-spacing: .03em;
+    transition: color .2s;
+  }
+  .nav-link:hover { color: #818cf8; }
+
+  .nav-github {
+    background: rgba(99,102,241,0.08);
+    border: 1px solid rgba(99,102,241,0.22);
+    color: #a5b4fc;
+    padding: .32rem .85rem;
+    border-radius: 6px;
+    font-size: .8rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all .2s;
+    display: flex;
+    align-items: center;
+    gap: .4rem;
+    white-space: nowrap;
+  }
+  .nav-github:hover {
+    background: rgba(99,102,241,0.16);
+    border-color: rgba(99,102,241,0.45);
+  }
+
+  /* ── Responsivo ── */
+  @media (max-width: 860px) {
+    .nav-link { display: none; }
+  }
+
+  @media (max-width: 480px) {
+    .nav-inner { padding: 0 1.25rem; }
+    .nav-github span { display: none; }
+    .nav-github { padding: .35rem .6rem; }
+  }
+</style>

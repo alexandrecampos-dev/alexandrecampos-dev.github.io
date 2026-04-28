@@ -3,14 +3,10 @@
 
 <section id="contato" style="padding:7rem 2rem;border-top:1px solid rgba(255,255,255,0.06);">
 
-  <div class="fade-up" style="max-width:580px;margin:0 auto;">
-
-    <!-- Contact box com linha gradiente no topo — inspirado no okumotinho -->
-    <div style="position:relative;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.09);border-radius:20px;padding:3rem 2.5rem;text-align:center;overflow:hidden;">
-
+  <div class="fade-up contact-box-wrap">
+    <div class="contact-box">
       <!-- Gradient top line -->
       <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:220px;height:1px;background:linear-gradient(90deg,transparent,#6366f1,#06b6d4,transparent);"></div>
-
       <!-- Glow interno -->
       <div style="position:absolute;top:-60px;left:50%;transform:translateX(-50%);width:300px;height:200px;background:radial-gradient(ellipse,rgba(99,102,241,0.12) 0%,transparent 70%);pointer-events:none;filter:blur(20px);"></div>
 
@@ -23,27 +19,19 @@
           Aberto a projetos, colaborações ou troca de experiências sobre engenharia de IA e arquitetura .NET.
         </p>
 
-        <div style="display:flex;gap:.65rem;justify-content:center;flex-wrap:wrap;">
-          <a href="mailto:alexandre1000a@gmail.com"
-            style="background:linear-gradient(135deg,#6366f1,#06b6d4);color:#fff;padding:.65rem 1.75rem;border-radius:8px;font-weight:600;font-size:.88rem;text-decoration:none;box-shadow:0 0 28px rgba(99,102,241,0.35);display:inline-flex;align-items:center;gap:.45rem;transition:transform .2s,box-shadow .2s;"
-            onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 0 40px rgba(99,102,241,0.5)'"
-            onmouseout="this.style.transform='';this.style.boxShadow='0 0 28px rgba(99,102,241,0.35)'">
+        <div class="contact-btns">
+          <a href="mailto:alexandre1000a@gmail.com" class="btn-email">
             <i class="fa-solid fa-envelope" style="font-size:.85rem;"></i>
             Enviar e-mail
           </a>
-
-          {[
-            { href: "https://www.linkedin.com/in/alexandre-campos-3725b18b/", icon: "fa-brands fa-linkedin", label: "LinkedIn" },
-            { href: "https://github.com/alexandrecampos-dev", icon: "fa-brands fa-github", label: "GitHub" },
-          ].map(s => (
-            <a href={s.href} target="_blank" rel="noopener"
-              style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.1);color:#7878a8;padding:.65rem 1.4rem;border-radius:8px;font-weight:600;font-size:.88rem;text-decoration:none;display:inline-flex;align-items:center;gap:.45rem;transition:all .2s;"
-              onmouseover="this.style.borderColor='rgba(99,102,241,0.5)';this.style.color='#e2e8f0';this.style.background='rgba(99,102,241,0.08)';this.style.transform='translateY(-2px)'"
-              onmouseout="this.style.borderColor='rgba(255,255,255,0.1)';this.style.color='#7878a8';this.style.background='rgba(255,255,255,0.03)';this.style.transform=''">
-              <i class={s.icon} style="font-size:.9rem;"></i>
-              {s.label}
-            </a>
-          ))}
+          <a href="https://www.linkedin.com/in/alexandre-campos-3725b18b/" target="_blank" rel="noopener" class="btn-social">
+            <i class="fa-brands fa-linkedin" style="font-size:.9rem;"></i>
+            LinkedIn
+          </a>
+          <a href="https://github.com/alexandrecampos-dev" target="_blank" rel="noopener" class="btn-social">
+            <i class="fa-brands fa-github" style="font-size:.9rem;"></i>
+            GitHub
+          </a>
         </div>
       </div>
     </div>
@@ -53,3 +41,83 @@
 <footer style="position:relative;z-index:1;text-align:center;padding:1.75rem;color:#2a2a42;font-size:.77rem;font-family:'JetBrains Mono',monospace;border-top:1px solid rgba(255,255,255,0.04);">
   Alexandre Campos &copy; {new Date().getFullYear()} &nbsp;·&nbsp; Campo Grande, Brasil
 </footer>
+
+<style>
+  .contact-box-wrap {
+    max-width: 580px;
+    margin: 0 auto;
+  }
+
+  .contact-box {
+    position: relative;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.09);
+    border-radius: 20px;
+    padding: 3rem 2.5rem;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .contact-btns {
+    display: flex;
+    gap: .65rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-email {
+    background: linear-gradient(135deg, #6366f1, #06b6d4);
+    color: #fff;
+    padding: .65rem 1.75rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: .88rem;
+    text-decoration: none;
+    box-shadow: 0 0 28px rgba(99,102,241,0.35);
+    display: inline-flex;
+    align-items: center;
+    gap: .45rem;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .btn-email:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 40px rgba(99,102,241,0.5);
+  }
+
+  .btn-social {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: #7878a8;
+    padding: .65rem 1.4rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: .88rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: .45rem;
+    transition: all .2s;
+  }
+  .btn-social:hover {
+    border-color: rgba(99,102,241,0.5);
+    color: #e2e8f0;
+    background: rgba(99,102,241,0.08);
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 480px) {
+    .contact-box {
+      padding: 2rem 1.5rem;
+    }
+
+    .contact-btns {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .btn-email, .btn-social {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>

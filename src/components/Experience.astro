@@ -12,10 +12,11 @@ import { experiences } from "../data/experience";
 
   <div style="display:flex;flex-direction:column;gap:0;">
     {experiences.map((exp, i) => (
-      <div class="fade-up" style={`display:grid;grid-template-columns:150px 1fr;gap:2rem;position:relative;padding-bottom:2rem;transition-delay:${i * 0.08}s`}>
+      <div class={`exp-row fade-up`} style={`transition-delay:${i * 0.08}s`}>
 
-        <div style="text-align:right;padding-top:.3rem;">
-          <span style="font-size:.74rem;color:#4a4a68;font-weight:500;font-family:'JetBrains Mono',monospace;">{exp.period}</span>
+        <!-- Period (hidden on mobile, shown inline inside card) -->
+        <div class="exp-period">
+          <span>{exp.period}</span>
         </div>
 
         <div style="position:relative;padding-left:2rem;">
@@ -29,6 +30,10 @@ import { experiences } from "../data/experience";
           </div>
 
           <div class="card-gradient-border" style="padding:1.25rem 1.4rem;">
+            <!-- Period badge on mobile -->
+            <div class="exp-period-mobile">
+              <span>{exp.period}</span>
+            </div>
             <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:.5rem;margin-bottom:.65rem;">
               <h3 style="font-size:.95rem;font-weight:700;color:#e2e8f0;">{exp.role}</h3>
               <span style="font-size:.8rem;color:#818cf8;font-weight:600;">{exp.company}</span>
@@ -47,3 +52,52 @@ import { experiences } from "../data/experience";
     ))}
   </div>
 </section>
+
+<style>
+  .exp-row {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 2rem;
+    position: relative;
+    padding-bottom: 2rem;
+  }
+
+  .exp-period {
+    text-align: right;
+    padding-top: .3rem;
+  }
+
+  .exp-period span {
+    font-size: .74rem;
+    color: #4a4a68;
+    font-weight: 500;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .exp-period-mobile {
+    display: none;
+  }
+
+  @media (max-width: 640px) {
+    .exp-row {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+
+    .exp-period {
+      display: none;
+    }
+
+    .exp-period-mobile {
+      display: block;
+      margin-bottom: .5rem;
+    }
+
+    .exp-period-mobile span {
+      font-size: .7rem;
+      color: #4a4a68;
+      font-weight: 500;
+      font-family: 'JetBrains Mono', monospace;
+    }
+  }
+</style>
