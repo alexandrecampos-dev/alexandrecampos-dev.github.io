@@ -1,0 +1,65 @@
+---
+import { projects } from "../data/projects";
+---
+
+<section id="projetos" style="padding: 6rem 1.5rem; max-width: 64rem; margin: 0 auto;">
+  <p style="color: #a5b4fc; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem;">
+    Portfólio
+  </p>
+  <h2 style="font-size: 2rem; font-weight: 700; color: #f4f4f5; margin-bottom: 0.75rem;">
+    Projetos
+  </h2>
+  <p style="color: #71717a; margin-bottom: 3rem; max-width: 480px;">
+    Projetos públicos com foco em engenharia de IA e arquitetura .NET.
+  </p>
+
+  <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem;">
+    {projects.map((project) => (
+      <a
+        href={project.url}
+        target="_blank"
+        rel="noopener"
+        style={`
+          display: flex;
+          flex-direction: column;
+          background-color: #18181b;
+          border: 1px solid ${project.highlight ? '#4338ca' : '#27272a'};
+          border-radius: 0.75rem;
+          padding: 1.5rem;
+          text-decoration: none;
+          transition: border-color 0.2s, transform 0.2s;
+          cursor: pointer;
+        `}
+        onmouseover="this.style.borderColor='#6366f1'; this.style.transform='translateY(-2px)'"
+        onmouseout={`this.style.borderColor='${project.highlight ? '#4338ca' : '#27272a'}'; this.style.transform='translateY(0)'`}
+      >
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2">
+            <path d="M3 3h7v7H3z M14 3h7v7h-7z M3 14h7v7H3z M14 14h7v7h-7z"/>
+          </svg>
+          {project.highlight && (
+            <span style="font-size: 0.7rem; background-color: #1e1b4b; color: #a5b4fc; padding: 0.2rem 0.6rem; border-radius: 9999px; font-weight: 600;">
+              Destaque
+            </span>
+          )}
+        </div>
+
+        <h3 style="font-size: 1.05rem; font-weight: 700; color: #f4f4f5; margin-bottom: 0.75rem; font-family: ui-monospace, monospace;">
+          {project.name}
+        </h3>
+
+        <p style="color: #a1a1aa; font-size: 0.9rem; line-height: 1.7; flex: 1; margin-bottom: 1.25rem;">
+          {project.description}
+        </p>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: auto;">
+          {project.tags.slice(0, 5).map((tag) => (
+            <span style="font-size: 0.72rem; background-color: #27272a; color: #71717a; padding: 0.2rem 0.5rem; border-radius: 0.25rem;">
+              {tag}
+            </span>
+          ))}
+        </div>
+      </a>
+    ))}
+  </div>
+</section>

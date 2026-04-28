@@ -1,0 +1,54 @@
+---
+const categories = [
+  {
+    label: "Linguagens & Frameworks",
+    items: ["C#", ".NET 9", "ASP.NET Core", "TypeScript", "Angular", "Python", "FastAPI"],
+  },
+  {
+    label: "IA & Agentes",
+    items: ["Claude / MCP", "Azure AI Foundry", "Groq", "OpenAI Codex", "Ollama", "RAG / pgvector"],
+  },
+  {
+    label: "Arquitetura",
+    items: ["Clean Architecture", "DDD", "CQRS", "MediatR", "TDD", "Hexagonal"],
+  },
+  {
+    label: "Cloud & DevOps",
+    items: ["Azure", "Docker", "Azure Pipelines", "AWS", "Hangfire", "OpenTelemetry"],
+  },
+  {
+    label: "Banco de dados & Mensageria",
+    items: ["PostgreSQL", "SQL Server", "Oracle", "RabbitMQ", "Service Bus", "EF Core"],
+  },
+  {
+    label: "Segurança",
+    items: ["JWT", "Keycloak", "OAuth2", "ASP.NET Identity"],
+  },
+];
+---
+
+<section id="stack" style="padding: 6rem 1.5rem; max-width: 64rem; margin: 0 auto; border-top: 1px solid #27272a;">
+  <p style="color: #a5b4fc; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem;">
+    Tecnologias
+  </p>
+  <h2 style="font-size: 2rem; font-weight: 700; color: #f4f4f5; margin-bottom: 3rem;">
+    Stack
+  </h2>
+
+  <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2rem;">
+    {categories.map((cat) => (
+      <div>
+        <h3 style="font-size: 0.8rem; color: #6366f1; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.75rem;">
+          {cat.label}
+        </h3>
+        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+          {cat.items.map((item) => (
+            <span style="font-size: 0.85rem; background-color: #18181b; border: 1px solid #27272a; color: #a1a1aa; padding: 0.3rem 0.7rem; border-radius: 0.375rem;">
+              {item}
+            </span>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

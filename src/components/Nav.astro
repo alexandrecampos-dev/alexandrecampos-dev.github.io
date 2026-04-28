@@ -1,0 +1,28 @@
+---
+---
+
+<nav style="position: fixed; top: 0; left: 0; right: 0; z-index: 50; backdrop-filter: blur(12px); background-color: rgba(9, 9, 11, 0.85); border-bottom: 1px solid #18181b;">
+  <div style="max-width: 64rem; margin: 0 auto; padding: 0 1.5rem; height: 3.5rem; display: flex; align-items: center; justify-content: space-between;">
+    <a href="#inicio" style="font-weight: 700; color: #f4f4f5; text-decoration: none; font-size: 0.95rem; letter-spacing: -0.01em;">
+      ac<span style="color: #6366f1;">.</span>dev
+    </a>
+
+    <div style="display: flex; gap: 2rem; align-items: center;">
+      {[
+        { href: "#projetos", label: "Projetos" },
+        { href: "#stack", label: "Stack" },
+        { href: "#experiencia", label: "Experiência" },
+        { href: "#contato", label: "Contato" },
+      ].map(({ href, label }) => (
+        <a
+          href={href}
+          style="color: #71717a; text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: color 0.2s;"
+          onmouseover="this.style.color='#e4e4e7'"
+          onmouseout="this.style.color='#71717a'"
+        >
+          {label}
+        </a>
+      ))}
+    </div>
+  </div>
+</nav>
