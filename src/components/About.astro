@@ -1,0 +1,178 @@
+---
+---
+
+<section id="sobre" style="padding:7rem 2rem;max-width:72rem;margin:0 auto;border-top:1px solid rgba(255,255,255,0.06);">
+
+  <div class="fade-up">
+    <p class="section-label">Sobre</p>
+    <h2 style="font-size:2.2rem;font-weight:800;color:#e2e8f0;letter-spacing:-.03em;">Quem sou</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="about-grid">
+
+    <!-- Narrativa -->
+    <div class="fade-up delay-1">
+      <p class="about-p">
+        Escrevo código desde <span class="hl-indigo">2012</span>. Comecei com
+        <span class="hl-indigo">C# e .NET</span> e nunca larguei — só fui adicionando camadas:
+        frontend com <span class="hl-indigo">Angular</span>, cloud com
+        <span class="hl-indigo">Azure e AWS</span> e, mais recentemente,
+        <span class="hl-cyan">inteligência artificial aplicada a produtos reais</span>.
+      </p>
+
+      <p class="about-p">
+        Hoje construo plataformas que usam <span class="hl-cyan">IA generativa</span> para resolver
+        problemas concretos — geração e revisão automática de código, documentação técnica a partir de
+        transcrições de áudio e aceleração do ciclo de qualidade de software. Trabalho com integração de
+        <span class="hl-indigo">LLMs</span> (OpenAI, Azure OpenAI, Groq),
+        <span class="hl-indigo">engenharia de prompts</span> e arquiteturas que combinam
+        .NET, Python, Angular e serviços cognitivos do Azure.
+      </p>
+
+      <p class="about-p">
+        Um dos projetos que mais me orgulho é o
+        <span class="hl-cyan">QAMetrik / QaCodAI</span> — plataforma enterprise de IA para o
+        ecossistema SAP/ABAP, com servidores
+        <span class="hl-indigo">MCP</span> em .NET, pipelines
+        <span class="hl-indigo">RAG</span> com pgvector e motor multi-provedor de LLM rodando em produção.
+      </p>
+
+      <p class="about-p">
+        Além do código, fundei a
+        <span class="hl-indigo">Ágil Gestão de Projetos</span>, onde aplico Scrum e Kanban em
+        consultorias. Essa vivência em gestão me deu algo que muitos devs não têm:
+        <span class="hl-cyan">visão de produto</span> e a capacidade de traduzir necessidade de negócio
+        em solução técnica.
+      </p>
+
+      <blockquote class="about-quote">
+        Quando não estou codando, provavelmente estou explorando novos modelos de IA ou pensando
+        em como automatizar algo que ainda é manual.
+      </blockquote>
+    </div>
+
+    <!-- Highlight cards -->
+    <div class="about-highlights fade-up delay-2">
+      {[
+        {
+          icon: "fa-solid fa-code",
+          title: "10+ anos com .NET",
+          desc: "C# desde 2012 — do .NET Framework ao .NET 9 em produção.",
+        },
+        {
+          icon: "fa-solid fa-robot",
+          title: "IA em produção",
+          desc: "LLMs, RAG, MCP e agentes integrados a sistemas enterprise reais.",
+        },
+        {
+          icon: "fa-solid fa-chess-knight",
+          title: "Fundador",
+          desc: "Ágil Gestão de Projetos — consultoria com Scrum e Kanban.",
+        },
+        {
+          icon: "fa-solid fa-diagram-project",
+          title: "Visão de produto",
+          desc: "Experiência que une arquitetura técnica e necessidade de negócio.",
+        },
+      ].map(card => (
+        <div class="hi-card">
+          <div class="hi-icon">
+            <i class={card.icon}></i>
+          </div>
+          <div>
+            <h4 class="hi-title">{card.title}</h4>
+            <p class="hi-desc">{card.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .about-grid {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .about-p {
+    color: #8080a8;
+    font-size: .97rem;
+    line-height: 1.9;
+    margin-bottom: 1.2rem;
+  }
+
+  .hl-indigo { color: #a5b4fc; font-weight: 600; }
+  .hl-cyan   { color: #67e8f9; font-weight: 600; }
+
+  .about-quote {
+    margin-top: 2rem;
+    padding-left: 1.1rem;
+    border-left: 2px solid #6366f1;
+    color: #5a5a7a;
+    font-style: italic;
+    font-size: .92rem;
+    line-height: 1.75;
+  }
+
+  .about-highlights {
+    display: flex;
+    flex-direction: column;
+    gap: .85rem;
+  }
+
+  .hi-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    padding: 1rem 1.1rem;
+    display: flex;
+    gap: .85rem;
+    align-items: flex-start;
+    transition: border-color .25s, transform .25s;
+  }
+  .hi-card:hover {
+    border-color: rgba(99,102,241,0.35);
+    transform: translateX(4px);
+  }
+
+  .hi-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: rgba(99,102,241,0.1);
+    border: 1px solid rgba(99,102,241,0.22);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #818cf8;
+    font-size: 1rem;
+  }
+
+  .hi-title {
+    font-size: .88rem;
+    font-weight: 600;
+    color: #c8cde8;
+    margin-bottom: .2rem;
+  }
+
+  .hi-desc {
+    font-size: .78rem;
+    color: #4a4a68;
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  /* Responsivo */
+  @media (max-width: 768px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+</style>
