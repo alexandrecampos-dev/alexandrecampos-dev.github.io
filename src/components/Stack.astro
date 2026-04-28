@@ -2,52 +2,69 @@
 const categories = [
   {
     label: "Linguagens & Frameworks",
-    color: "#6366f1",
+    color: "#818cf8",
+    glow: "rgba(99,102,241,0.15)",
+    icon: `<polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline>`,
     items: ["C#", ".NET 9", "ASP.NET Core", "TypeScript", "Angular", "Python", "FastAPI"],
   },
   {
     label: "IA & Agentes",
-    color: "#8b5cf6",
+    color: "#67e8f9",
+    glow: "rgba(6,182,212,0.15)",
+    icon: `<path d="M12 2a5 5 0 0 1 5 5v2a5 5 0 0 1-10 0V7a5 5 0 0 1 5-5z"/><path d="M2 17c0-3 2.5-5 5-5h1"/><path d="M17 12h1c2.5 0 5 2 5 5"/><circle cx="12" cy="21" r="1"/><line x1="12" y1="17" x2="12" y2="20"/>`,
     items: ["Claude / MCP", "Azure AI Foundry", "Groq", "OpenAI Codex", "Ollama", "RAG / pgvector"],
   },
   {
     label: "Arquitetura",
-    color: "#a78bfa",
+    color: "#c084fc",
+    glow: "rgba(192,132,252,0.12)",
+    icon: `<rect x="2" y="3" width="20" height="5" rx="1"/><rect x="2" y="10" width="20" height="5" rx="1"/><rect x="2" y="17" width="20" height="5" rx="1"/>`,
     items: ["Clean Architecture", "DDD", "CQRS", "MediatR", "TDD", "Hexagonal"],
   },
   {
     label: "Cloud & DevOps",
-    color: "#6366f1",
+    color: "#818cf8",
+    glow: "rgba(99,102,241,0.12)",
+    icon: `<path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/>`,
     items: ["Azure", "Docker", "Azure Pipelines", "AWS", "Hangfire", "OpenTelemetry"],
   },
   {
     label: "Banco de dados & Mensageria",
-    color: "#8b5cf6",
+    color: "#67e8f9",
+    glow: "rgba(6,182,212,0.12)",
+    icon: `<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>`,
     items: ["PostgreSQL", "SQL Server", "Oracle", "RabbitMQ", "Service Bus", "EF Core"],
   },
   {
     label: "Segurança",
-    color: "#a78bfa",
+    color: "#c084fc",
+    glow: "rgba(192,132,252,0.12)",
+    icon: `<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>`,
     items: ["JWT", "Keycloak", "OAuth2", "ASP.NET Identity"],
   },
 ];
 ---
 
-<section id="stack" style="padding: 7rem 2rem; max-width: 72rem; margin: 0 auto; border-top: 1px solid #12121f;">
+<section id="stack" style="padding: 7rem 2rem; max-width: 72rem; margin: 0 auto; border-top: 1px solid rgba(255,255,255,0.04);">
 
   <div style="margin-bottom: 3.5rem;">
     <p class="section-label">Tecnologias</p>
-    <h2 style="font-size: 2.2rem; font-weight: 800; color: #e2e2f0; letter-spacing: -0.02em;">
+    <h2 style="font-size: 2.2rem; font-weight: 800; color: #e2e8f0; letter-spacing: -0.03em;">
       Stack
     </h2>
   </div>
 
-  <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem;">
+  <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 1.25rem;">
     {categories.map((cat) => (
       <div class="card-gradient-border" style="padding: 1.5rem;">
-        <h3 style={`font-size: 0.72rem; color: ${cat.color}; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem;`}>
-          {cat.label}
-        </h3>
+        <div style="display: flex; align-items: center; gap: 0.65rem; margin-bottom: 1.1rem;">
+          <div style={`width: 32px; height: 32px; border-radius: 8px; background: ${cat.glow}; border: 1px solid ${cat.color}30; display: flex; align-items: center; justify-content: center; flex-shrink: 0;`}>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke={cat.color} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={cat.icon} />
+          </div>
+          <h3 style={`font-size: 0.7rem; color: ${cat.color}; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; line-height: 1.3;`}>
+            {cat.label}
+          </h3>
+        </div>
         <div style="display: flex; flex-wrap: wrap; gap: 0.45rem;">
           {cat.items.map((item) => (
             <span class="tag-pill">{item}</span>

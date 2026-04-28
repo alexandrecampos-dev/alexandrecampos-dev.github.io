@@ -1,0 +1,89 @@
+---
+---
+
+<div class="terminal-window" style="max-width: 560px;">
+  <div class="terminal-header">
+    <span class="terminal-dot" style="background:#ff5f57;"></span>
+    <span class="terminal-dot" style="background:#febc2e;"></span>
+    <span class="terminal-dot" style="background:#28c840;"></span>
+    <span style="flex: 1; text-align: center; font-size: 0.72rem; color: #40405a; font-family: ui-monospace, monospace; letter-spacing: 0.04em;">alexandre@dev — bash</span>
+  </div>
+  <div class="terminal-body">
+
+    <!-- Line 1: command being typed -->
+    <div style="margin-bottom: 0.75rem;">
+      <span class="terminal-prompt">❯</span>
+      <span class="terminal-cmd" id="term-cmd"></span><span class="terminal-cursor" id="term-cursor"></span>
+    </div>
+
+    <!-- Output (hidden until typing ends) -->
+    <div id="term-output" style="display:none; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 0.75rem;">
+      <div style="margin-bottom: 0.4rem;">
+        <span class="terminal-comment"># projeto em destaque</span>
+      </div>
+      <div>
+        <span class="terminal-output-key">name</span>
+        <span style="color:#40405a;"> = </span>
+        <span class="terminal-output-str">"dotnet-rag-documents"</span>
+      </div>
+      <div>
+        <span class="terminal-output-key">stack</span>
+        <span style="color:#40405a;"> = </span>
+        <span class="terminal-output-val">[ ".NET 9", "pgvector", "Azure OpenAI", "Ollama" ]</span>
+      </div>
+      <div>
+        <span class="terminal-output-key">pattern</span>
+        <span style="color:#40405a;"> = </span>
+        <span class="terminal-output-str">"Clean Architecture + CQRS + RAG pipeline"</span>
+      </div>
+      <div>
+        <span class="terminal-output-key">status</span>
+        <span style="color:#40405a;"> = </span>
+        <span style="color:#4ade80; font-weight:600;">"active"</span>
+      </div>
+      <div style="margin-top: 0.5rem;">
+        <span class="terminal-output-key">url</span>
+        <span style="color:#40405a;"> = </span>
+        <span style="color:#67e8f9; text-decoration: underline; cursor: pointer;"
+          onclick="window.open('https://github.com/alexandrecampos-dev/dotnet-rag-documents','_blank')">
+          github.com/alexandrecampos-dev/dotnet-rag-documents
+        </span>
+      </div>
+    </div>
+
+    <!-- Second command after output -->
+    <div id="term-cmd2-wrap" style="display:none; margin-top: 0.75rem;">
+      <span class="terminal-prompt">❯</span>
+      <span class="terminal-cursor"></span>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    const cmd = document.getElementById('term-cmd');
+    const cursor = document.getElementById('term-cursor');
+    const output = document.getElementById('term-output');
+    const cmd2 = document.getElementById('term-cmd2-wrap');
+
+    const text = 'alexandre --latest-project';
+    let i = 0;
+
+    function type() {
+      if (i < text.length) {
+        cmd.textContent += text[i++];
+        setTimeout(type, 55 + Math.random() * 40);
+      } else {
+        // pause then show output
+        setTimeout(() => {
+          cursor.style.display = 'none';
+          output.style.display = 'block';
+          cmd2.style.display = 'block';
+        }, 400);
+      }
+    }
+
+    // Start typing after page load with a small delay
+    setTimeout(type, 900);
+  })();
+</script>
