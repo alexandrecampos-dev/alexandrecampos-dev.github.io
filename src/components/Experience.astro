@@ -2,39 +2,55 @@
 import { experiences } from "../data/experience";
 ---
 
-<section id="experiencia" style="padding: 6rem 1.5rem; max-width: 64rem; margin: 0 auto; border-top: 1px solid #27272a;">
-  <p style="color: #a5b4fc; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem;">
-    Trajetória
-  </p>
-  <h2 style="font-size: 2rem; font-weight: 700; color: #f4f4f5; margin-bottom: 3rem;">
-    Experiência
-  </h2>
+<section id="experiencia" style="padding: 7rem 2rem; max-width: 72rem; margin: 0 auto; border-top: 1px solid #12121f;">
 
-  <div style="position: relative; padding-left: 1.5rem; border-left: 2px solid #27272a; display: flex; flex-direction: column; gap: 3rem;">
-    {experiences.map((exp) => (
-      <div style="position: relative;">
-        <div style="position: absolute; left: -1.85rem; top: 0.35rem; width: 0.75rem; height: 0.75rem; border-radius: 9999px; background-color: #6366f1;"></div>
+  <div style="margin-bottom: 3.5rem;">
+    <p class="section-label">Trajetória</p>
+    <h2 style="font-size: 2.2rem; font-weight: 800; color: #e2e2f0; letter-spacing: -0.02em;">
+      Experiência
+    </h2>
+  </div>
 
-        <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem;">
-          <h3 style="font-size: 1.05rem; font-weight: 700; color: #f4f4f5;">
-            {exp.role}
-          </h3>
-          <span style="font-size: 0.85rem; color: #6366f1; font-weight: 600;">
-            {exp.company}
-          </span>
-          <span style="font-size: 0.8rem; color: #52525b; margin-left: auto;">
+  <div style="display: flex; flex-direction: column; gap: 0;">
+    {experiences.map((exp, i) => (
+      <div style="display: grid; grid-template-columns: 160px 1fr; gap: 2rem; position: relative; padding-bottom: 2.5rem;">
+
+        <!-- Left: period -->
+        <div style="text-align: right; padding-top: 0.2rem;">
+          <span style="font-size: 0.78rem; color: #40405a; font-weight: 500; line-height: 1.6;">
             {exp.period}
           </span>
         </div>
 
-        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.4rem;">
-          {exp.description.map((item) => (
-            <li style="color: #a1a1aa; font-size: 0.9rem; line-height: 1.7; display: flex; gap: 0.5rem;">
-              <span style="color: #4f46e5; flex-shrink: 0; margin-top: 0.1rem;">—</span>
-              {item}
-            </li>
-          ))}
-        </ul>
+        <!-- Center: dot + line -->
+        <div style="position: relative; padding-left: 2rem;">
+          <div style="position: absolute; left: 0; top: 0.35rem; display: flex; flex-direction: column; align-items: center; height: 100%;">
+            <div class={i === 0 ? "timeline-dot-active" : ""} style={`width: 10px; height: 10px; border-radius: 9999px; background: ${i === 0 ? '#6366f1' : '#2a2a42'}; border: 2px solid ${i === 0 ? '#6366f1' : '#1a1a2e'}; flex-shrink: 0; z-index: 1;`}></div>
+            {i < experiences.length - 1 && (
+              <div style="width: 1px; flex: 1; background: linear-gradient(to bottom, #2a2a42, transparent); margin-top: 4px;"></div>
+            )}
+          </div>
+
+          <!-- Content -->
+          <div class="card-gradient-border" style="padding: 1.4rem 1.5rem;">
+            <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.6rem; margin-bottom: 0.75rem;">
+              <h3 style="font-size: 0.98rem; font-weight: 700; color: #e2e2f0;">
+                {exp.role}
+              </h3>
+              <span style="font-size: 0.82rem; color: #6366f1; font-weight: 600;">
+                {exp.company}
+              </span>
+            </div>
+            <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.5rem;">
+              {exp.description.map((item) => (
+                <li style="color: #50506e; font-size: 0.875rem; line-height: 1.7; display: flex; gap: 0.6rem;">
+                  <span style="color: #2d2d50; flex-shrink: 0; margin-top: 0.1rem; font-weight: 700;">—</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
       </div>
     ))}
   </div>

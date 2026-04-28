@@ -1,10 +1,11 @@
 ---
 ---
 
-<nav style="position: fixed; top: 0; left: 0; right: 0; z-index: 50; backdrop-filter: blur(12px); background-color: rgba(9, 9, 11, 0.85); border-bottom: 1px solid #18181b;">
-  <div style="max-width: 64rem; margin: 0 auto; padding: 0 1.5rem; height: 3.5rem; display: flex; align-items: center; justify-content: space-between;">
-    <a href="#inicio" style="font-weight: 700; color: #f4f4f5; text-decoration: none; font-size: 0.95rem; letter-spacing: -0.01em;">
-      ac<span style="color: #6366f1;">.</span>dev
+<nav style="position: fixed; top: 0; left: 0; right: 0; z-index: 50; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); background-color: rgba(8, 8, 16, 0.8); border-bottom: 1px solid #12121f;">
+  <div style="max-width: 72rem; margin: 0 auto; padding: 0 2rem; height: 3.5rem; display: flex; align-items: center; justify-content: space-between;">
+
+    <a href="#inicio" style="font-weight: 800; color: #e2e2f0; text-decoration: none; font-size: 1rem; letter-spacing: -0.02em;">
+      ac<span style="color: #6366f1; font-size: 1.2rem;">.</span>dev
     </a>
 
     <div style="display: flex; gap: 2rem; align-items: center;">
@@ -14,15 +15,20 @@
         { href: "#experiencia", label: "Experiência" },
         { href: "#contato", label: "Contato" },
       ].map(({ href, label }) => (
-        <a
-          href={href}
-          style="color: #71717a; text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: color 0.2s;"
-          onmouseover="this.style.color='#e4e4e7'"
-          onmouseout="this.style.color='#71717a'"
-        >
+        <a href={href}
+          style="color: #40405a; text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: color 0.2s;"
+          onmouseover="this.style.color='#e2e2f0'"
+          onmouseout="this.style.color='#40405a'">
           {label}
         </a>
       ))}
+
+      <a href="https://github.com/alexandrecampos-dev" target="_blank" rel="noopener"
+        style="background: #1a1a2e; border: 1px solid #2a2a42; color: #a5b4fc; padding: 0.35rem 0.9rem; border-radius: 6px; font-size: 0.82rem; font-weight: 600; text-decoration: none; transition: border-color 0.2s;"
+        onmouseover="this.style.borderColor='#6366f1'"
+        onmouseout="this.style.borderColor='#2a2a42'">
+        GitHub
+      </a>
     </div>
   </div>
 </nav>
