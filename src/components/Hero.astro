@@ -3,93 +3,104 @@
 
 <section id="inicio" class="relative min-h-screen flex items-center overflow-hidden bg-grid">
 
-  <!-- Gradient blobs -->
   <div class="blob-1" style="top: -150px; left: -200px;"></div>
-  <div class="blob-2" style="top: 100px; right: -150px;"></div>
+  <div class="blob-2" style="top: 80px; right: -150px;"></div>
+  <div style="position:absolute;bottom:0;left:0;right:0;height:200px;background:linear-gradient(to bottom,transparent,#0a0a0f);pointer-events:none;"></div>
 
-  <!-- Fade overlay at bottom -->
-  <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 200px; background: linear-gradient(to bottom, transparent, #0a0a0f); pointer-events: none;"></div>
+  <div style="position:relative;z-index:10;max-width:72rem;margin:0 auto;padding:6rem 2rem 4rem;display:grid;grid-template-columns:1fr auto;gap:5rem;align-items:center;width:100%;">
 
-  <div style="position: relative; z-index: 10; max-width: 72rem; margin: 0 auto; padding: 6rem 2rem 4rem; display: grid; grid-template-columns: 1fr auto; gap: 5rem; align-items: center; width: 100%;">
-
-    <!-- Left: text -->
+    <!-- Left -->
     <div>
-      <div class="animate-fade-in animate-delay-1" style="display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.3); border-radius: 9999px; padding: 0.3rem 0.9rem; margin-bottom: 1.75rem;">
-        <span style="width: 7px; height: 7px; border-radius: 9999px; background: #4ade80; box-shadow: 0 0 10px #4ade8099;"></span>
-        <span style="font-size: 0.75rem; color: #a5b4fc; font-weight: 500; letter-spacing: 0.03em;">Disponível para projetos</span>
+      <div class="animate-fade-in animate-delay-1" style="display:inline-flex;align-items:center;gap:.5rem;background:rgba(99,102,241,0.1);border:1px solid rgba(99,102,241,0.28);border-radius:9999px;padding:.3rem .9rem;margin-bottom:1.75rem;">
+        <span style="width:7px;height:7px;border-radius:9999px;background:#4ade80;box-shadow:0 0 10px #4ade8099;"></span>
+        <span style="font-size:.74rem;color:#a5b4fc;font-weight:500;letter-spacing:.04em;font-family:'JetBrains Mono',monospace;">// disponível para projetos</span>
       </div>
 
-      <h1 class="animate-fade-in animate-delay-2 text-gradient" style="font-size: clamp(2.8rem, 5vw, 4.4rem); font-weight: 800; line-height: 1.05; margin-bottom: 1.1rem; letter-spacing: -0.03em;">
+      <h1 class="animate-fade-in animate-delay-2 text-gradient" style="font-size:clamp(2.8rem,5vw,4.5rem);font-weight:800;line-height:1.06;margin-bottom:1rem;letter-spacing:-.03em;">
         Alexandre<br/>Campos
       </h1>
 
-      <h2 class="animate-fade-in animate-delay-3" style="font-size: 1rem; color: #7878a8; font-weight: 500; margin-bottom: 1.75rem; line-height: 1.6; max-width: 480px;">
-        Construindo pontes entre o ecossistema
-        <span style="color: #a5b4fc; font-weight: 600;">.NET Enterprise</span>
-        e o futuro da
-        <span style="color: #67e8f9; font-weight: 600;">IA Generativa</span>
-        — RAG, MCP e LLMs em produção.
-      </h2>
+      <!-- Typed subtitle -->
+      <div class="animate-fade-in animate-delay-3" style="font-size:1.05rem;color:#6b6b95;font-weight:500;margin-bottom:1.75rem;min-height:1.8rem;display:flex;align-items:center;gap:2px;">
+        <span id="hero-typed" style="color:#9090c0;"></span><span class="cursor-blink"></span>
+      </div>
 
-      <!-- Stats row -->
-      <div class="animate-fade-in animate-delay-3" style="display: flex; align-items: center; gap: 2rem; margin-bottom: 2.5rem; flex-wrap: wrap;">
+      <!-- Stats -->
+      <div class="animate-fade-in animate-delay-3" style="display:flex;align-items:center;gap:2rem;margin-bottom:2.5rem;flex-wrap:wrap;">
         {[
           { value: "10+", label: "anos de experiência" },
           { value: ".NET", label: "stack principal" },
           { value: "MCP · RAG", label: "foco atual" },
         ].map(s => (
           <div>
-            <div style="font-size: 1.25rem; font-weight: 800; color: #a5b4fc; letter-spacing: -0.02em; line-height: 1;">{s.value}</div>
-            <div style="font-size: 0.67rem; color: #5a5a7a; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; margin-top: 4px;">{s.label}</div>
+            <div style="font-size:1.2rem;font-weight:800;color:#a5b4fc;letter-spacing:-.02em;line-height:1;">{s.value}</div>
+            <div style="font-size:.67rem;color:#4a4a68;font-weight:600;text-transform:uppercase;letter-spacing:.1em;margin-top:4px;font-family:'JetBrains Mono',monospace;">{s.label}</div>
           </div>
         ))}
-        <div style="width: 1px; height: 2rem; background: rgba(255,255,255,0.08); align-self: center;"></div>
-        <div style="display: flex; align-items: center; gap: 0.5rem;">
+        <div style="width:1px;height:2rem;background:rgba(255,255,255,0.07);align-self:center;"></div>
+        <div style="display:flex;align-items:center;gap:.45rem;">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
-          <span style="font-size: 0.78rem; color: #5a5a7a; font-weight: 500;">Campo Grande, Brasil</span>
+          <span style="font-size:.77rem;color:#4a4a68;font-weight:500;">Campo Grande, Brasil</span>
         </div>
       </div>
 
-      <div class="animate-fade-in animate-delay-4" style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
-        <a href="#projetos" style="background: linear-gradient(135deg, #6366f1, #06b6d4); color: #fff; padding: 0.65rem 1.6rem; border-radius: 8px; font-weight: 600; font-size: 0.88rem; text-decoration: none; box-shadow: 0 0 32px rgba(99,102,241,0.4); letter-spacing: 0.01em;">
+      <!-- CTAs -->
+      <div class="animate-fade-in animate-delay-4" style="display:flex;gap:.75rem;flex-wrap:wrap;">
+        <a href="#projetos" style="background:linear-gradient(135deg,#6366f1,#06b6d4);color:#fff;padding:.65rem 1.6rem;border-radius:8px;font-weight:600;font-size:.88rem;text-decoration:none;box-shadow:0 0 32px rgba(99,102,241,0.4);letter-spacing:.01em;transition:transform .2s,box-shadow .2s;"
+          onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 0 44px rgba(99,102,241,0.55)'"
+          onmouseout="this.style.transform='';this.style.boxShadow='0 0 32px rgba(99,102,241,0.4)'">
           Ver projetos
         </a>
         <a href="https://www.linkedin.com/in/alexandre-campos-3725b18b/" target="_blank" rel="noopener"
-          style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); color: #8888b8; padding: 0.65rem 1.6rem; border-radius: 8px; font-weight: 600; font-size: 0.88rem; text-decoration: none; transition: border-color 0.2s, color 0.2s, background 0.2s;"
+          style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.1);color:#7878a8;padding:.65rem 1.6rem;border-radius:8px;font-weight:600;font-size:.88rem;text-decoration:none;transition:all .2s;"
           onmouseover="this.style.borderColor='rgba(99,102,241,0.5)';this.style.color='#e2e8f0';this.style.background='rgba(99,102,241,0.08)'"
-          onmouseout="this.style.borderColor='rgba(255,255,255,0.12)';this.style.color='#8888b8';this.style.background='rgba(255,255,255,0.04)'">
+          onmouseout="this.style.borderColor='rgba(255,255,255,0.1)';this.style.color='#7878a8';this.style.background='rgba(255,255,255,0.03)'">
           LinkedIn
         </a>
         <a href="https://github.com/alexandrecampos-dev" target="_blank" rel="noopener"
-          style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); color: #8888b8; padding: 0.65rem 1.6rem; border-radius: 8px; font-weight: 600; font-size: 0.88rem; text-decoration: none; transition: border-color 0.2s, color 0.2s, background 0.2s;"
+          style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.1);color:#7878a8;padding:.65rem 1.6rem;border-radius:8px;font-weight:600;font-size:.88rem;text-decoration:none;transition:all .2s;"
           onmouseover="this.style.borderColor='rgba(99,102,241,0.5)';this.style.color='#e2e8f0';this.style.background='rgba(99,102,241,0.08)'"
-          onmouseout="this.style.borderColor='rgba(255,255,255,0.12)';this.style.color='#8888b8';this.style.background='rgba(255,255,255,0.04)'">
+          onmouseout="this.style.borderColor='rgba(255,255,255,0.1)';this.style.color='#7878a8';this.style.background='rgba(255,255,255,0.03)'">
           GitHub
         </a>
       </div>
     </div>
 
-    <!-- Right: photo -->
-    <div class="animate-fade-in animate-delay-2" style="flex-shrink: 0; position: relative;">
-      <!-- Glow behind photo -->
-      <div style="position: absolute; inset: -30px; background: radial-gradient(circle, rgba(99,102,241,0.3) 0%, rgba(6,182,212,0.12) 50%, transparent 70%); filter: blur(25px); border-radius: 9999px; pointer-events: none;"></div>
-
-      <!-- Gradient ring -->
-      <div style="position: absolute; inset: -2px; border-radius: 22px; background: linear-gradient(135deg, #6366f1, #06b6d4); opacity: 0.6;"></div>
-
-      <!-- Photo -->
-      <div style="position: relative; width: 310px; height: 310px; border-radius: 20px; overflow: hidden;">
-        <img src="/photo-hero.jpg" alt="Alexandre Campos"
-          style="width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block;" />
-        <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 55%, rgba(10,10,15,0.65)); pointer-events: none;"></div>
+    <!-- Right: spinning ring avatar -->
+    <div class="animate-fade-in animate-delay-2" style="flex-shrink:0;position:relative;">
+      <div style="position:absolute;inset:-40px;background:radial-gradient(circle,rgba(99,102,241,0.22) 0%,rgba(6,182,212,0.08) 50%,transparent 70%);filter:blur(30px);border-radius:9999px;pointer-events:none;"></div>
+      <div class="avatar-ring">
+        <img src="/photo-hero.jpg" alt="Alexandre Campos" />
       </div>
-
-      <!-- Badge -->
-      <div style="position: absolute; bottom: -16px; left: 50%; transform: translateX(-50%); background: rgba(10,10,16,0.92); border: 1px solid rgba(255,255,255,0.12); border-radius: 9999px; padding: 0.4rem 1.1rem; display: flex; align-items: center; gap: 0.5rem; white-space: nowrap; box-shadow: 0 4px 24px rgba(0,0,0,0.6); backdrop-filter: blur(12px);">
-        <div style="width: 6px; height: 6px; border-radius: 9999px; background: #4ade80; box-shadow: 0 0 8px #4ade80;"></div>
-        <span style="font-size: 0.72rem; color: #a5b4fc; font-weight: 600; letter-spacing: 0.04em;">Open to work</span>
+      <div style="position:absolute;bottom:-18px;left:50%;transform:translateX(-50%);background:rgba(8,8,14,0.92);border:1px solid rgba(255,255,255,0.1);border-radius:9999px;padding:.4rem 1.1rem;display:flex;align-items:center;gap:.5rem;white-space:nowrap;box-shadow:0 4px 24px rgba(0,0,0,0.6);backdrop-filter:blur(12px);">
+        <div style="width:6px;height:6px;border-radius:9999px;background:#4ade80;box-shadow:0 0 8px #4ade80;"></div>
+        <span style="font-size:.72rem;color:#a5b4fc;font-weight:600;letter-spacing:.04em;font-family:'JetBrains Mono',monospace;">Open to work</span>
       </div>
     </div>
 
   </div>
 </section>
+
+<script>
+  // Typed effect
+  const roles = [
+    'Engenheiro de Software',
+    'Engenheiro de IA',
+    'Arquiteto .NET',
+    'Builder de Agentes MCP',
+    'RAG Pipeline Developer',
+  ];
+  const el = document.getElementById('hero-typed');
+  if (el) {
+    let ri = 0, ci = 0, deleting = false;
+    function tick() {
+      const word = roles[ri];
+      el.textContent = deleting ? word.slice(0, ci--) : word.slice(0, ci++);
+      let delay = deleting ? 45 : 80;
+      if (!deleting && ci > word.length)      { delay = 1800; deleting = true; }
+      else if (deleting && ci < 0)            { deleting = false; ci = 0; ri = (ri + 1) % roles.length; delay = 400; }
+      setTimeout(tick, delay);
+    }
+    setTimeout(tick, 700);
+  }
+</script>

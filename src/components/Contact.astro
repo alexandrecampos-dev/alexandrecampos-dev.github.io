@@ -1,44 +1,55 @@
 ---
 ---
 
-<section id="contato" style="position: relative; padding: 7rem 2rem; border-top: 1px solid rgba(255,255,255,0.06); overflow: hidden;">
+<section id="contato" style="padding:7rem 2rem;border-top:1px solid rgba(255,255,255,0.06);">
 
-  <!-- Glow de fundo centralizado -->
-  <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 600px; height: 400px; background: radial-gradient(ellipse, rgba(99,102,241,0.14) 0%, rgba(6,182,212,0.06) 50%, transparent 70%); filter: blur(60px); pointer-events: none;"></div>
+  <div class="fade-up" style="max-width:580px;margin:0 auto;">
 
-  <div style="position: relative; z-index: 1; max-width: 540px; margin: 0 auto; text-align: center;">
+    <!-- Contact box com linha gradiente no topo — inspirado no okumotinho -->
+    <div style="position:relative;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.09);border-radius:20px;padding:3rem 2.5rem;text-align:center;overflow:hidden;">
 
-    <p class="section-label">Contato</p>
-    <h2 style="font-size: 2.2rem; font-weight: 800; color: #e2e8f0; margin-bottom: 1rem; letter-spacing: -0.03em;">
-      Vamos conversar
-    </h2>
-    <p style="color: #7070a0; font-size: 0.9rem; line-height: 1.85; margin-bottom: 2.5rem; max-width: 380px; margin-left: auto; margin-right: auto;">
-      Aberto a projetos, colaborações ou troca de experiências sobre engenharia de IA e arquitetura .NET.
-    </p>
+      <!-- Gradient top line -->
+      <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:220px;height:1px;background:linear-gradient(90deg,transparent,#6366f1,#06b6d4,transparent);"></div>
 
-    <div style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;">
-      <a href="mailto:alexandre1000a@gmail.com"
-        style="background: linear-gradient(135deg, #6366f1, #06b6d4); color: #fff; padding: 0.65rem 1.75rem; border-radius: 8px; font-weight: 600; font-size: 0.88rem; text-decoration: none; box-shadow: 0 0 32px rgba(99,102,241,0.35); letter-spacing: 0.01em;">
-        Enviar e-mail
-      </a>
-      <a href="https://www.linkedin.com/in/alexandre-campos-3725b18b/" target="_blank" rel="noopener"
-        style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); color: #8888b8; padding: 0.65rem 1.75rem; border-radius: 8px; font-weight: 600; font-size: 0.88rem; text-decoration: none; transition: all 0.2s;"
-        onmouseover="this.style.borderColor='rgba(99,102,241,0.5)';this.style.color='#e2e8f0';this.style.background='rgba(99,102,241,0.08)'"
-        onmouseout="this.style.borderColor='rgba(255,255,255,0.12)';this.style.color='#8888b8';this.style.background='rgba(255,255,255,0.04)'">
-        LinkedIn
-      </a>
-      <a href="https://github.com/alexandrecampos-dev" target="_blank" rel="noopener"
-        style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); color: #8888b8; padding: 0.65rem 1.75rem; border-radius: 8px; font-weight: 600; font-size: 0.88rem; text-decoration: none; transition: all 0.2s;"
-        onmouseover="this.style.borderColor='rgba(99,102,241,0.5)';this.style.color='#e2e8f0';this.style.background='rgba(99,102,241,0.08)'"
-        onmouseout="this.style.borderColor='rgba(255,255,255,0.12)';this.style.color='#8888b8';this.style.background='rgba(255,255,255,0.04)'">
-        GitHub
-      </a>
+      <!-- Glow interno -->
+      <div style="position:absolute;top:-60px;left:50%;transform:translateX(-50%);width:300px;height:200px;background:radial-gradient(ellipse,rgba(99,102,241,0.12) 0%,transparent 70%);pointer-events:none;filter:blur(20px);"></div>
+
+      <div style="position:relative;z-index:1;">
+        <p class="section-label" style="margin-bottom:.5rem;">Contato</p>
+        <h2 style="font-size:1.9rem;font-weight:800;color:#e2e8f0;margin-bottom:.75rem;letter-spacing:-.03em;">
+          Vamos conversar
+        </h2>
+        <p style="color:#6868a0;font-size:.9rem;line-height:1.85;margin-bottom:2rem;max-width:380px;margin-left:auto;margin-right:auto;">
+          Aberto a projetos, colaborações ou troca de experiências sobre engenharia de IA e arquitetura .NET.
+        </p>
+
+        <div style="display:flex;gap:.65rem;justify-content:center;flex-wrap:wrap;">
+          <a href="mailto:alexandre1000a@gmail.com"
+            style="background:linear-gradient(135deg,#6366f1,#06b6d4);color:#fff;padding:.65rem 1.75rem;border-radius:8px;font-weight:600;font-size:.88rem;text-decoration:none;box-shadow:0 0 28px rgba(99,102,241,0.35);display:inline-flex;align-items:center;gap:.45rem;transition:transform .2s,box-shadow .2s;"
+            onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 0 40px rgba(99,102,241,0.5)'"
+            onmouseout="this.style.transform='';this.style.boxShadow='0 0 28px rgba(99,102,241,0.35)'">
+            <i class="fa-solid fa-envelope" style="font-size:.85rem;"></i>
+            Enviar e-mail
+          </a>
+
+          {[
+            { href: "https://www.linkedin.com/in/alexandre-campos-3725b18b/", icon: "fa-brands fa-linkedin", label: "LinkedIn" },
+            { href: "https://github.com/alexandrecampos-dev", icon: "fa-brands fa-github", label: "GitHub" },
+          ].map(s => (
+            <a href={s.href} target="_blank" rel="noopener"
+              style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.1);color:#7878a8;padding:.65rem 1.4rem;border-radius:8px;font-weight:600;font-size:.88rem;text-decoration:none;display:inline-flex;align-items:center;gap:.45rem;transition:all .2s;"
+              onmouseover="this.style.borderColor='rgba(99,102,241,0.5)';this.style.color='#e2e8f0';this.style.background='rgba(99,102,241,0.08)';this.style.transform='translateY(-2px)'"
+              onmouseout="this.style.borderColor='rgba(255,255,255,0.1)';this.style.color='#7878a8';this.style.background='rgba(255,255,255,0.03)';this.style.transform=''">
+              <i class={s.icon} style="font-size:.9rem;"></i>
+              {s.label}
+            </a>
+          ))}
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<footer style="padding: 2rem; text-align: center; border-top: 1px solid rgba(255,255,255,0.04);">
-  <p style="color: #2e2e4a; font-size: 0.78rem; font-weight: 500;">
-    Alexandre Campos &copy; {new Date().getFullYear()} &nbsp;·&nbsp; Campo Grande, Brasil
-  </p>
+<footer style="position:relative;z-index:1;text-align:center;padding:1.75rem;color:#2a2a42;font-size:.77rem;font-family:'JetBrains Mono',monospace;border-top:1px solid rgba(255,255,255,0.04);">
+  Alexandre Campos &copy; {new Date().getFullYear()} &nbsp;·&nbsp; Campo Grande, Brasil
 </footer>

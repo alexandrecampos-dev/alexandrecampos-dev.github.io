@@ -2,51 +2,41 @@
 import { experiences } from "../data/experience";
 ---
 
-<section id="experiencia" style="padding: 7rem 2rem; max-width: 72rem; margin: 0 auto; border-top: 1px solid rgba(255,255,255,0.06);">
+<section id="experiencia" style="padding:7rem 2rem;max-width:72rem;margin:0 auto;border-top:1px solid rgba(255,255,255,0.06);">
 
-  <div style="margin-bottom: 3.5rem;">
+  <div class="fade-up">
     <p class="section-label">Trajetória</p>
-    <h2 style="font-size: 2.2rem; font-weight: 800; color: #e2e8f0; letter-spacing: -0.03em;">
-      Experiência
-    </h2>
+    <h2 style="font-size:2.2rem;font-weight:800;color:#e2e8f0;letter-spacing:-.03em;">Experiência</h2>
+    <div class="section-line"></div>
   </div>
 
-  <div style="display: flex; flex-direction: column; gap: 0;">
+  <div style="display:flex;flex-direction:column;gap:0;">
     {experiences.map((exp, i) => (
-      <div style="display: grid; grid-template-columns: 150px 1fr; gap: 2rem; position: relative; padding-bottom: 2rem;">
+      <div class="fade-up" style={`display:grid;grid-template-columns:150px 1fr;gap:2rem;position:relative;padding-bottom:2rem;transition-delay:${i * 0.08}s`}>
 
-        <!-- Left: period -->
-        <div style="text-align: right; padding-top: 0.3rem;">
-          <span style="font-size: 0.75rem; color: #5a5a7a; font-weight: 500; font-variant-numeric: tabular-nums; line-height: 1.6;">
-            {exp.period}
-          </span>
+        <div style="text-align:right;padding-top:.3rem;">
+          <span style="font-size:.74rem;color:#4a4a68;font-weight:500;font-family:'JetBrains Mono',monospace;">{exp.period}</span>
         </div>
 
-        <!-- Center: dot + line + content -->
-        <div style="position: relative; padding-left: 2rem;">
-          <div style="position: absolute; left: 0; top: 0; display: flex; flex-direction: column; align-items: center; height: 100%;">
+        <div style="position:relative;padding-left:2rem;">
+          <div style="position:absolute;left:0;top:0;display:flex;flex-direction:column;align-items:center;height:100%;">
             <div class={i === 0 ? "timeline-dot-active" : ""}
-              style={`width: 9px; height: 9px; border-radius: 9999px; background: ${i === 0 ? '#6366f1' : '#2a2a42'}; border: 2px solid ${i === 0 ? '#818cf8' : '#3a3a5a'}; flex-shrink: 0; z-index: 1; margin-top: 3px;`}>
+              style={`width:9px;height:9px;border-radius:9999px;background:${i === 0 ? '#6366f1' : '#2a2a42'};border:2px solid ${i === 0 ? '#818cf8' : '#383858'};flex-shrink:0;z-index:1;margin-top:3px;`}>
             </div>
             {i < experiences.length - 1 && (
-              <div style="width: 1px; flex: 1; background: linear-gradient(to bottom, rgba(99,102,241,0.25), rgba(99,102,241,0.04)); margin-top: 6px;"></div>
+              <div style="width:1px;flex:1;background:linear-gradient(to bottom,rgba(99,102,241,0.22),rgba(99,102,241,0.03));margin-top:6px;"></div>
             )}
           </div>
 
-          <!-- Card -->
-          <div class="card-gradient-border" style="padding: 1.25rem 1.4rem;">
-            <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.5rem; margin-bottom: 0.7rem;">
-              <h3 style="font-size: 0.95rem; font-weight: 700; color: #e2e8f0; letter-spacing: -0.01em;">
-                {exp.role}
-              </h3>
-              <span style="font-size: 0.8rem; color: #818cf8; font-weight: 600;">
-                {exp.company}
-              </span>
+          <div class="card-gradient-border" style="padding:1.25rem 1.4rem;">
+            <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:.5rem;margin-bottom:.65rem;">
+              <h3 style="font-size:.95rem;font-weight:700;color:#e2e8f0;">{exp.role}</h3>
+              <span style="font-size:.8rem;color:#818cf8;font-weight:600;">{exp.company}</span>
             </div>
-            <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.4rem;">
+            <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.4rem;">
               {exp.description.map((item) => (
-                <li style="color: #7070a0; font-size: 0.84rem; line-height: 1.65; display: flex; gap: 0.5rem;">
-                  <span style="color: #4040608; flex-shrink: 0; color: #404060; font-size: 0.65rem; margin-top: 0.35rem;">▸</span>
+                <li style="color:#7070a0;font-size:.83rem;line-height:1.65;display:flex;gap:.5rem;">
+                  <span style="color:#383858;flex-shrink:0;font-size:.65rem;margin-top:.32rem;">▸</span>
                   <span>{item}</span>
                 </li>
               ))}
