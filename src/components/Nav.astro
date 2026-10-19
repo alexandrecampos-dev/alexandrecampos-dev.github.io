@@ -9,10 +9,12 @@
 
     <div class="nav-links">
       {[
-        { href: "#sobre",    label: "sobre" },
-        { href: "#projetos", label: "projetos" },
-        { href: "#stack",    label: "stack" },
-        { href: "#contato",  label: "contato" },
+        { href: "#sobre",     label: "sobre" },
+        { href: "#servicos",  label: "serviços" },
+        { href: "#projetos",  label: "projetos" },
+        { href: "#palestras", label: "palestras" },
+        { href: "#stack",     label: "stack" },
+        { href: "#contato",   label: "contato" },
       ].map(({ href, label }) => (
         <a href={href} class="nav-link">{label}</a>
       ))}
@@ -60,7 +62,7 @@
 
   .nav-links {
     display: flex;
-    gap: 2rem;
+    gap: 1.6rem;
     align-items: center;
   }
 

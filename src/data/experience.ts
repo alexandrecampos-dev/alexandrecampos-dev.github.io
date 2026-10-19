@@ -7,11 +7,11 @@ export interface Experience {
 
 export const experiences: Experience[] = [
   {
-    company: "QAMetrik",
+    company: "Plataforma enterprise de IA para SAP",
     role: "Desenvolvedor Fullstack Senior",
     period: "ago 2025 — presente",
     description: [
-      "Desenvolvimento do ecossistema QAMetrik/QaCodAI com .NET 9, .NET Core 3.1 (ABP) e Angular 16",
+      "Desenvolvimento da plataforma com .NET 9, .NET Core 3.1 (ABP) e Angular 16",
       "Integração de IA com Groq, Azure AI Foundry e Ollama; APIs Python (FastAPI) em Azure Container Apps",
       "Criação de agentes e automações com Claude e Codex para análise técnica, geração de código e documentação",
       "Pipeline de transcrição de áudio com Azure Speech Services e refinamento via LLM",

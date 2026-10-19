@@ -24,9 +24,9 @@ export const projects: Project[] = [
     highlight: true,
   },
   {
-    name: "QaCodAI",
+    name: "Plataforma de IA para SAP",
     description:
-      "Plataforma enterprise de IA para SAP/ABAP — geração de código, revisão técnica e documentação com motor multi-provedor (Groq, Azure AI, Ollama). 13 configurações de prompt para S/4HANA e ECC.",
+      "Plataforma enterprise de IA para SAP — geração de código, revisão técnica e documentação com motor multi-provedor (Groq, Azure AI, Ollama). 13 configurações de prompt para S/4HANA e ECC.",
     tags: ["C#", ".NET 9", "Angular 18", "Python", "FastAPI", "PostgreSQL", "Azure", "SAP/ABAP"],
     url: "https://github.com/alexandrecampos-dev",
     highlight: false,
