@@ -1,14 +1,17 @@
 ---
 import "../styles/global.css";
+import { GTAG_IDS } from "../data/contact";
 
 interface Props {
   title?: string;
   description?: string;
+  canonical?: string;
 }
 
 const {
   title = "Alexandre Campos — Engenheiro de Software & IA",
   description = "Desenvolvedor Fullstack Senior com foco em engenharia de IA, agentes e automação. .NET, Angular, Python, Azure.",
+  canonical,
 } = Astro.props;
 ---
 
@@ -24,6 +27,19 @@ const {
     <meta property="og:type" content="website" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
+    {canonical && <link rel="canonical" href={canonical} />}
+
+    {GTAG_IDS.length > 0 && (
+      <>
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${GTAG_IDS[0]}`}></script>
+        <script is:inline define:vars={{ ids: GTAG_IDS }}>
+          window.dataLayer = window.dataLayer || [];
+          window.gtag = function () { dataLayer.push(arguments); };
+          gtag("js", new Date());
+          ids.forEach((id) => gtag("config", id));
+        </script>
+      </>
+    )}
 
     <!-- Fonts: Inter + JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -43,6 +59,14 @@ const {
         { threshold: 0.12 }
       );
       document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+      // Conversões: clique em WhatsApp ou e-mail vira evento no GA4/Google Ads, se a tag estiver ativa
+      document.addEventListener('click', (e) => {
+        const link = (e.target as HTMLElement).closest('a');
+        if (!link || typeof (window as any).gtag !== 'function') return;
+        const kind = link.href.includes('wa.me') ? 'whatsapp' : link.href.startsWith('mailto:') ? 'email' : null;
+        if (kind) (window as any).gtag('event', 'generate_lead', { method: kind, page: location.pathname });
+      });
     </script>
   </body>
 </html>

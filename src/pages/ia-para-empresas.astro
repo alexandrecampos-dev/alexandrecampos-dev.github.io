@@ -1,0 +1,404 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { EMAIL, PHONE_DISPLAY, whatsappUrl } from "../data/contact";
+import { services } from "../data/services";
+
+const ctaMsg = "Olá, Alexandre! Vi a página de IA para empresas e quero agendar a conversa gratuita de 30 min.";
+
+const trust = [
+  { icon: "fa-solid fa-code", text: "Programando desde 2012" },
+  { icon: "fa-solid fa-robot", text: "IA rodando em produção" },
+  { icon: "fa-solid fa-location-dot", text: "Campo Grande/MS · presencial ou remoto" },
+  { icon: "fa-solid fa-file-signature", text: "Escopo e preço fechados" },
+];
+
+const pains = [
+  { q: "O WhatsApp não para e a equipe não dá conta?", a: "Um assistente atende na hora, agenda e responde o que é repetitivo. Sua equipe fica com o que precisa de gente." },
+  { q: "A informação está perdida em PDFs e planilhas?", a: "Pergunte em português e receba a resposta com o trecho do documento de onde ela saiu." },
+  { q: "Tarefas manuais tomam horas toda semana?", a: "Relatórios, cadastros, pós-venda e conferências viram rotinas automáticas, integradas aos sistemas que você já usa." },
+  { q: "Quer usar IA, mas não sabe por onde começar?", a: "O diagnóstico mostra onde a IA dá retorno no seu negócio, e onde não vale a pena." },
+];
+
+const segments = [
+  { icon: "fa-solid fa-stethoscope", name: "Clínicas e consultórios", ex: "Agendamento, confirmação de consultas e respostas sobre convênios e preparo de exames." },
+  { icon: "fa-solid fa-scale-balanced", name: "Escritórios jurídicos e contábeis", ex: "Busca em contratos, peças e normas; triagem de documentos; atendimento a clientes." },
+  { icon: "fa-solid fa-wheat-awn", name: "Agro e cooperativas", ex: "Base de conhecimento técnica, apoio a laudos e relatórios e atendimento ao produtor." },
+  { icon: "fa-solid fa-store", name: "Varejo e imobiliárias", ex: "Atendimento a leads 24h, qualificação do contato e pós-venda automático." },
+  { icon: "fa-solid fa-industry", name: "Indústria e serviços", ex: "Manuais e procedimentos consultáveis, automação de processos internos e integração com ERP." },
+];
+
+const steps = [
+  { t: "Conversa de 30 min", d: "Gratuita. Você conta o problema e eu digo com franqueza se a IA resolve." },
+  { t: "Proposta fechada", d: "Escopo, prazo e preço por escrito, sem surpresa no meio do caminho." },
+  { t: "Primeira versão rápida", d: "Começamos pelo uso de maior retorno, para você ver resultado cedo." },
+  { t: "Ajuste e suporte", d: "Acompanho o uso real, ajusto o que precisa e treino a equipe." },
+];
+
+const faq = [
+  { q: "Quanto custa?", a: "Depende do escopo. Depois da conversa, você recebe uma proposta com preço fechado. Projetos começam pequenos, focados no uso de maior retorno, e crescem conforme o resultado." },
+  { q: "Preciso trocar o sistema que uso hoje?", a: "Não. A IA se integra ao que você já tem (WhatsApp, ERP, CRM, planilhas, pastas de documentos) sempre que o sistema permite integração." },
+  { q: "E a segurança dos dados (LGPD)?", a: "O assistente só acessa o que você autorizar, e as respostas sobre documentos mostram a fonte. A arquitetura é definida com você, incluindo onde os dados ficam e quem tem acesso." },
+  { q: "A IA vai responder qualquer coisa para o meu cliente?", a: "Não. Ela segue regras definidas por você, responde dentro do que foi configurado e passa para um humano quando não deve decidir sozinha." },
+  { q: "Atende só Campo Grande?", a: "Atendo presencialmente em Campo Grande e remotamente em todo o Brasil." },
+];
+---
+
+<Layout
+  title="Inteligência Artificial para Empresas em Campo Grande/MS | Alexandre Campos"
+  description="Assistente de IA no WhatsApp, IA sobre os documentos da empresa e automação de processos. Engenheiro de software em Campo Grande/MS, com escopo e preço fechados."
+  canonical="https://alexandrecampos-dev.github.io/ia-para-empresas"
+>
+  <header class="lp-nav">
+    <div class="lp-nav-inner">
+      <a href="/" class="lp-logo">&lt;<span class="logo-name">ac</span> <span class="logo-slash">/</span>&gt;</a>
+      <a href={whatsappUrl(ctaMsg)} target="_blank" rel="noopener" class="lp-nav-cta">
+        <i class="fa-brands fa-whatsapp"></i><span>Falar no WhatsApp</span>
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="lp-hero bg-grid">
+      <div class="blob-1" style="top:-200px;left:-250px;"></div>
+      <div class="blob-2" style="top:60px;right:-200px;"></div>
+      <div class="lp-wrap lp-hero-inner">
+        <p class="lp-kicker animate-fade-in animate-delay-1">IA para empresas · Campo Grande/MS</p>
+        <h1 class="lp-h1 animate-fade-in animate-delay-2">
+          Sua empresa atendendo mais rápido e trabalhando menos no manual, com
+          <span class="text-gradient">inteligência artificial</span>.
+        </h1>
+        <p class="lp-sub animate-fade-in animate-delay-3">
+          Assistentes no WhatsApp, busca inteligente nos seus documentos e automação de processos, feitos sob medida
+          por um engenheiro de software com mais de 10 anos de experiência.
+        </p>
+        <div class="lp-ctas animate-fade-in animate-delay-4">
+          <a href={whatsappUrl(ctaMsg)} target="_blank" rel="noopener" class="lp-btn">
+            <i class="fa-brands fa-whatsapp"></i> Agendar conversa gratuita de 30 min
+          </a>
+          <a href="#solucoes" class="lp-btn-ghost">Ver soluções</a>
+        </div>
+        <ul class="lp-trust animate-fade-in animate-delay-4">
+          {trust.map(t => <li><i class={t.icon}></i>{t.text}</li>)}
+        </ul>
+      </div>
+    </section>
+
+    <!-- Dores -->
+    <section class="lp-section">
+      <div class="lp-wrap">
+        <div class="fade-up">
+          <p class="section-label">O problema</p>
+          <h2 class="lp-h2">Reconhece alguma dessas situações?</h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="lp-grid-2">
+          {pains.map((p, i) => (
+            <div class="card-gradient-border fade-up lp-pain" style={`transition-delay:${i * 0.08}s`}>
+              <h3>{p.q}</h3>
+              <p>{p.a}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Soluções -->
+    <section id="solucoes" class="lp-section">
+      <div class="lp-wrap">
+        <div class="fade-up">
+          <p class="section-label">Soluções</p>
+          <h2 class="lp-h2">O que eu entrego</h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="lp-grid-4">
+          {services.map((s, i) => (
+            <div class="card-gradient-border fade-up lp-card" style={`transition-delay:${i * 0.08}s`}>
+              <div class="lp-icon"><i class={s.icon}></i></div>
+              <h3>{s.title}</h3>
+              <p>{s.desc}</p>
+              <a href={whatsappUrl(`Olá, Alexandre! Tenho interesse em: ${s.title}.`)} target="_blank" rel="noopener" class="lp-card-link">
+                <i class="fa-brands fa-whatsapp"></i> Quero isso
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Segmentos -->
+    <section class="lp-section">
+      <div class="lp-wrap">
+        <div class="fade-up">
+          <p class="section-label">Para quem</p>
+          <h2 class="lp-h2">Exemplos por segmento</h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="lp-segs">
+          {segments.map((s, i) => (
+            <div class="lp-seg fade-up" style={`transition-delay:${i * 0.06}s`}>
+              <div class="lp-icon"><i class={s.icon}></i></div>
+              <div>
+                <h3>{s.name}</h3>
+                <p>{s.ex}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Como funciona -->
+    <section class="lp-section">
+      <div class="lp-wrap">
+        <div class="fade-up">
+          <p class="section-label">Como funciona</p>
+          <h2 class="lp-h2">Do primeiro contato à IA funcionando</h2>
+          <div class="section-line"></div>
+        </div>
+        <ol class="lp-steps">
+          {steps.map((s, i) => (
+            <li class="fade-up" style={`transition-delay:${i * 0.08}s`}>
+              <span class="lp-step-n">0{i + 1}</span>
+              <h3>{s.t}</h3>
+              <p>{s.d}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <!-- Quem faz -->
+    <section class="lp-section">
+      <div class="lp-wrap lp-about fade-up">
+        <img src="/photo-side.jpg" alt="Alexandre Campos" class="lp-photo" loading="lazy" />
+        <div>
+          <p class="section-label">Quem faz</p>
+          <h2 class="lp-h2">Alexandre Campos</h2>
+          <p class="lp-about-role">Engenheiro de Software & IA · Campo Grande/MS</p>
+          <p class="lp-about-p">
+            Programo desde 2012, com .NET, Angular, Python e cloud, e hoje trabalho com IA generativa em produção:
+            agentes, RAG (IA sobre documentos), MCP e integração de LLMs a sistemas empresariais. Também atuo como
+            consultor em gestão ágil. Por isso, começo pelo problema do negócio, e não pela tecnologia.
+          </p>
+          <a href="/" class="lp-card-link">Ver portfólio completo →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="lp-section">
+      <div class="lp-wrap lp-faq-wrap">
+        <div class="fade-up">
+          <p class="section-label">Dúvidas</p>
+          <h2 class="lp-h2">Perguntas frequentes</h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="lp-faq fade-up">
+          {faq.map(f => (
+            <details>
+              <summary>{f.q}</summary>
+              <p>{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA final -->
+    <section class="lp-section">
+      <div class="lp-wrap">
+        <div class="lp-final fade-up">
+          <h2>Vamos ver se a IA resolve o seu problema?</h2>
+          <p>Conversa gratuita de 30 minutos, sem compromisso. Se a IA não for o caminho, eu digo.</p>
+          <div class="lp-ctas lp-ctas-center">
+            <a href={whatsappUrl(ctaMsg)} target="_blank" rel="noopener" class="lp-btn">
+              <i class="fa-brands fa-whatsapp"></i> WhatsApp {PHONE_DISPLAY}
+            </a>
+            <a href={`mailto:${EMAIL}?subject=${encodeURIComponent("IA para minha empresa")}`} class="lp-btn-ghost">
+              <i class="fa-solid fa-envelope"></i> {EMAIL}
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="lp-footer">
+    Alexandre Campos &copy; {new Date().getFullYear()} · Campo Grande/MS · <a href="/">portfólio</a>
+  </footer>
+
+  <a href={whatsappUrl(ctaMsg)} target="_blank" rel="noopener" class="lp-float" aria-label="Falar no WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+</Layout>
+
+<style>
+  .lp-wrap { max-width: 72rem; margin: 0 auto; padding: 0 2rem; }
+
+  /* Nav */
+  .lp-nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    background: rgba(10,10,15,0.82);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .lp-nav-inner {
+    max-width: 72rem; margin: 0 auto; padding: 0 2rem; height: 56px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .lp-logo {
+    font-family: var(--mono); font-size: .88rem; font-weight: 600;
+    color: #818cf8; text-decoration: none;
+  }
+  .logo-name { color: #c8cde8; }
+  .logo-slash { color: #67e8f9; }
+  .lp-nav-cta {
+    display: inline-flex; align-items: center; gap: .45rem;
+    background: rgba(37,211,102,0.1); border: 1px solid rgba(37,211,102,0.35);
+    color: #86efac; padding: .35rem .9rem; border-radius: 6px;
+    font-size: .8rem; font-weight: 600; text-decoration: none; transition: all .2s;
+  }
+  .lp-nav-cta:hover { background: rgba(37,211,102,0.18); }
+
+  /* Hero */
+  .lp-hero { position: relative; overflow: hidden; padding: 9rem 0 6rem; }
+  .lp-hero-inner { position: relative; z-index: 1; max-width: 52rem; }
+  .lp-kicker {
+    font-family: var(--mono); font-size: .76rem; color: #a5b4fc;
+    letter-spacing: .06em; margin-bottom: 1.25rem;
+  }
+  .lp-h1 {
+    font-size: clamp(2rem, 5vw, 3.3rem); font-weight: 800; line-height: 1.12;
+    letter-spacing: -.035em; color: #f1f5f9; margin-bottom: 1.4rem;
+  }
+  .lp-sub { font-size: 1.08rem; line-height: 1.8; color: #8c8cb4; max-width: 42rem; margin-bottom: 2rem; }
+  .lp-ctas { display: flex; gap: .75rem; flex-wrap: wrap; }
+  .lp-ctas-center { justify-content: center; }
+  .lp-btn {
+    display: inline-flex; align-items: center; gap: .55rem;
+    background: linear-gradient(135deg, #6366f1, #06b6d4); color: #fff;
+    padding: .8rem 1.6rem; border-radius: 9px; font-weight: 600; font-size: .95rem;
+    text-decoration: none; box-shadow: 0 0 32px rgba(99,102,241,0.4);
+    transition: transform .2s, box-shadow .2s;
+  }
+  .lp-btn:hover { transform: translateY(-2px); box-shadow: 0 0 44px rgba(99,102,241,0.55); }
+  .lp-btn-ghost {
+    display: inline-flex; align-items: center; gap: .5rem;
+    background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.12);
+    color: #a0a0c8; padding: .8rem 1.5rem; border-radius: 9px; font-weight: 600; font-size: .92rem;
+    text-decoration: none; transition: all .2s;
+  }
+  .lp-btn-ghost:hover { border-color: rgba(99,102,241,0.5); color: #e2e8f0; transform: translateY(-2px); }
+  .lp-trust {
+    list-style: none; padding: 0; margin-top: 2.5rem;
+    display: flex; flex-wrap: wrap; gap: .6rem 1.6rem;
+  }
+  .lp-trust li { display: flex; align-items: center; gap: .5rem; font-size: .82rem; color: #7878a8; }
+  .lp-trust i { color: #67e8f9; font-size: .8rem; }
+
+  /* Sections */
+  .lp-section { padding: 5rem 0; border-top: 1px solid rgba(255,255,255,0.06); }
+  .lp-h2 { font-size: clamp(1.6rem, 3.5vw, 2.2rem); font-weight: 800; color: #e2e8f0; letter-spacing: -.03em; }
+
+  .lp-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.1rem; }
+  .lp-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.1rem; }
+
+  .lp-pain { padding: 1.5rem; }
+  .lp-pain h3 { font-size: 1.02rem; font-weight: 700; color: #e2e8f0; margin-bottom: .5rem; }
+  .lp-pain p { font-size: .9rem; line-height: 1.75; color: #7c7ca8; }
+
+  .lp-card { padding: 1.5rem; display: flex; flex-direction: column; gap: .7rem; }
+  .lp-card h3 { font-size: 1rem; font-weight: 700; color: #e2e8f0; }
+  .lp-card p { font-size: .86rem; line-height: 1.75; color: #7070a0; }
+  .lp-icon {
+    width: 38px; height: 38px; border-radius: 9px; flex-shrink: 0;
+    background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.25);
+    display: flex; align-items: center; justify-content: center; color: #818cf8;
+  }
+  .lp-card-link {
+    margin-top: auto; color: #818cf8; font-size: .82rem; font-weight: 600;
+    text-decoration: none; font-family: var(--mono);
+    display: inline-flex; align-items: center; gap: .4rem;
+  }
+  .lp-card-link:hover { color: #c7d2fe; }
+
+  .lp-segs { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.4rem 2rem; }
+  .lp-seg { display: flex; gap: .9rem; align-items: flex-start; }
+  .lp-seg h3 { font-size: .95rem; font-weight: 700; color: #d0d4f0; margin-bottom: .3rem; }
+  .lp-seg p { font-size: .86rem; line-height: 1.7; color: #7070a0; }
+
+  .lp-steps {
+    list-style: none; padding: 0;
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.1rem;
+  }
+  .lp-steps li { border-top: 2px solid rgba(99,102,241,0.4); padding-top: 1.1rem; }
+  .lp-step-n { font-family: var(--mono); font-size: .78rem; color: #67e8f9; font-weight: 600; }
+  .lp-steps h3 { font-size: 1rem; font-weight: 700; color: #e2e8f0; margin: .4rem 0 .45rem; }
+  .lp-steps p { font-size: .86rem; line-height: 1.7; color: #7070a0; }
+
+  .lp-about { display: grid; grid-template-columns: 220px 1fr; gap: 2.5rem; align-items: center; }
+  .lp-photo {
+    width: 220px; height: 220px; object-fit: cover; border-radius: 18px;
+    border: 1px solid rgba(99,102,241,0.35); box-shadow: 0 0 40px rgba(99,102,241,0.2);
+  }
+  .lp-about-role { font-family: var(--mono); font-size: .78rem; color: #a5b4fc; margin: .4rem 0 1rem; }
+  .lp-about-p { font-size: .95rem; line-height: 1.85; color: #8080a8; margin-bottom: 1rem; max-width: 46rem; }
+
+  .lp-faq-wrap { max-width: 50rem; }
+  .lp-faq details {
+    border: 1px solid rgba(255,255,255,0.09); border-radius: 12px;
+    background: rgba(255,255,255,0.03); margin-bottom: .7rem; padding: 0 1.2rem;
+  }
+  .lp-faq summary {
+    cursor: pointer; list-style: none; padding: 1rem 0;
+    font-weight: 600; color: #d0d4f0; font-size: .95rem;
+    display: flex; justify-content: space-between; gap: 1rem;
+  }
+  .lp-faq summary::-webkit-details-marker { display: none; }
+  .lp-faq summary::after { content: "+"; color: #818cf8; font-family: var(--mono); }
+  .lp-faq details[open] summary::after { content: "−"; }
+  .lp-faq details p { font-size: .9rem; line-height: 1.8; color: #7c7ca8; padding-bottom: 1.1rem; }
+
+  .lp-final {
+    position: relative; text-align: center; max-width: 44rem; margin: 0 auto;
+    background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.09);
+    border-radius: 20px; padding: 3rem 2rem;
+  }
+  .lp-final h2 { font-size: clamp(1.5rem, 3.2vw, 2rem); font-weight: 800; color: #e2e8f0; letter-spacing: -.03em; margin-bottom: .75rem; }
+  .lp-final p { color: #7c7ca8; line-height: 1.8; margin-bottom: 1.75rem; }
+
+  .lp-footer {
+    text-align: center; padding: 1.75rem; color: #3a3a58; font-size: .78rem;
+    font-family: var(--mono); border-top: 1px solid rgba(255,255,255,0.04);
+  }
+  .lp-footer a { color: #6868a0; }
+
+  .lp-float {
+    position: fixed; right: 1.25rem; bottom: 1.25rem; z-index: 60;
+    width: 56px; height: 56px; border-radius: 9999px;
+    background: #25d366; color: #fff; font-size: 1.7rem;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.45); transition: transform .2s;
+  }
+  .lp-float:hover { transform: scale(1.07); }
+
+  /* Responsivo */
+  @media (max-width: 1100px) {
+    .lp-grid-4, .lp-steps { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 700px) {
+    .lp-wrap, .lp-nav-inner { padding: 0 1rem; }
+    .lp-hero { padding: 7rem 0 4rem; }
+    .lp-grid-2, .lp-grid-4, .lp-steps { grid-template-columns: 1fr; }
+    .lp-segs { grid-template-columns: 1fr; }
+    .lp-about { grid-template-columns: 1fr; text-align: center; }
+    .lp-photo { margin: 0 auto; width: 160px; height: 160px; }
+    .lp-about .section-line { margin-left: auto; margin-right: auto; }
+    .lp-btn, .lp-btn-ghost { width: 100%; justify-content: center; }
+    .lp-nav-cta span { display: none; }
+    .lp-section { padding: 3.5rem 0; }
+    .lp-final { padding: 2.25rem 1.25rem; }
+    .lp-footer { padding-bottom: 5.5rem; }
+  }
+</style>
