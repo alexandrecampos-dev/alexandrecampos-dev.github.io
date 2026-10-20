@@ -1,0 +1,201 @@
+---
+import { whatsappUrl } from "../data/contact";
+import { solucoes } from "../data/solucoes";
+
+interface Props {
+  /** Mensagem pré-preenchida do WhatsApp (cada landing fala a língua do seu público). */
+  ctaMensagem?: string;
+}
+
+const { ctaMensagem } = Astro.props;
+const atual = Astro.url.pathname;
+const naHome = atual === "/";
+const solucaoAtual = solucoes.some(s => s.href === atual);
+
+// Na home os links são âncoras locais; nas outras páginas apontam para a home.
+const secao = (id: string) => (naHome ? `#${id}` : `/#${id}`);
+const links = [
+  { href: secao("projetos"), label: "Projetos" },
+  { href: secao("palestras"), label: "Palestras" },
+  { href: secao("contato"), label: "Contato" },
+];
+---
+
+<header class="site-nav" data-site-nav>
+  <div class="site-nav-inner">
+    <a href="/" class="site-logo" aria-label="Início">
+      &lt;<span class="logo-name">ac</span> <span class="logo-slash">/</span>&gt;
+    </a>
+
+    <nav class="site-links" aria-label="Principal">
+      <div class:list={["site-menu", { ativo: solucaoAtual }]}>
+        <button type="button" class="site-link site-menu-btn" aria-haspopup="true" aria-expanded="false" aria-controls="menu-solucoes">
+          Soluções <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+        </button>
+        <ul id="menu-solucoes" class="site-dropdown">
+          {solucoes.map(s => (
+            <li>
+              <a href={s.href} class:list={{ ativo: s.href === atual }} aria-current={s.href === atual ? "page" : undefined}>
+                <i class={s.icon} aria-hidden="true"></i>
+                <span>{s.label}<small>{s.para}</small></span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+      {links.map(l => <a href={l.href} class="site-link">{l.label}</a>)}
+    </nav>
+
+    <div class="site-actions">
+      <a href={whatsappUrl(ctaMensagem)} target="_blank" rel="noopener" class="site-cta">
+        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i><span>WhatsApp</span>
+      </a>
+      <button type="button" class="site-burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-mobile" data-burger>
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <nav id="menu-mobile" class="site-mobile" aria-label="Menu" hidden>
+    <p class="site-mobile-titulo">Soluções</p>
+    {solucoes.map(s => (
+      <a href={s.href} class:list={["site-mobile-link", { ativo: s.href === atual }]}>
+        <i class={s.icon} aria-hidden="true"></i> {s.label}
+      </a>
+    ))}
+    <p class="site-mobile-titulo">Portfólio</p>
+    <a href="/" class="site-mobile-link"><i class="fa-solid fa-house" aria-hidden="true"></i> Início</a>
+    {links.map(l => <a href={l.href} class="site-mobile-link">{l.label}</a>)}
+    <a href="https://github.com/alexandrecampos-dev" target="_blank" rel="noopener" class="site-mobile-link">
+      <i class="fa-brands fa-github" aria-hidden="true"></i> GitHub
+    </a>
+  </nav>
+</header>
+
+<script>
+  // Menu mobile e dropdown por toque: sem framework, só alterna atributos.
+  document.querySelectorAll<HTMLElement>("[data-site-nav]").forEach(nav => {
+    const burger = nav.querySelector<HTMLButtonElement>("[data-burger]")!;
+    const mobile = nav.querySelector<HTMLElement>("#menu-mobile")!;
+    const fechar = () => {
+      burger.setAttribute("aria-expanded", "false");
+      burger.setAttribute("aria-label", "Abrir menu");
+      mobile.hidden = true;
+      nav.classList.remove("aberto");
+    };
+    burger.addEventListener("click", () => {
+      const aberto = burger.getAttribute("aria-expanded") === "true";
+      if (aberto) return fechar();
+      burger.setAttribute("aria-expanded", "true");
+      burger.setAttribute("aria-label", "Fechar menu");
+      mobile.hidden = false;
+      nav.classList.add("aberto");
+    });
+    mobile.addEventListener("click", e => { if ((e.target as HTMLElement).closest("a")) fechar(); });
+    document.addEventListener("keydown", e => { if (e.key === "Escape") fechar(); });
+
+    const btn = nav.querySelector<HTMLButtonElement>(".site-menu-btn")!;
+    const menu = btn.parentElement!;
+    btn.addEventListener("click", () => {
+      const aberto = btn.getAttribute("aria-expanded") === "true";
+      btn.setAttribute("aria-expanded", String(!aberto));
+      menu.classList.toggle("toque", !aberto);
+    });
+    document.addEventListener("click", e => {
+      if (!menu.contains(e.target as Node)) { btn.setAttribute("aria-expanded", "false"); menu.classList.remove("toque"); }
+    });
+  });
+</script>
+
+<style>
+  .site-nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    background: rgba(10,10,15,0.82);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .site-nav-inner {
+    max-width: 72rem; margin: 0 auto; padding: 0 2rem; height: 56px;
+    display: flex; align-items: center; justify-content: space-between; gap: 1.5rem;
+  }
+  .site-logo {
+    font-family: var(--mono); font-size: .88rem; font-weight: 600; color: #818cf8;
+    text-decoration: none; letter-spacing: .02em; white-space: nowrap;
+  }
+  .logo-name { color: #c8cde8; }
+  .logo-slash { color: #67e8f9; }
+
+  .site-links { display: flex; align-items: center; gap: 1.6rem; }
+  .site-link {
+    font-family: var(--mono); font-size: .8rem; font-weight: 500; letter-spacing: .03em;
+    color: #8f8fbc; text-decoration: none; background: none; border: 0; cursor: pointer; padding: 0;
+    display: inline-flex; align-items: center; gap: .4rem; transition: color .2s;
+  }
+  .site-link:hover, .site-menu.ativo > .site-link { color: #e2e8f0; }
+  .site-menu-btn i { font-size: .6rem; transition: transform .2s; }
+
+  /* Dropdown: abre no hover/foco (desktop) ou por toque (classe .toque) */
+  .site-menu { position: relative; padding: 1rem 0; margin: -1rem 0; }
+  .site-dropdown {
+    position: absolute; top: 100%; left: -1rem; min-width: 19rem; list-style: none; margin: 0; padding: .5rem;
+    background: rgba(14,14,22,0.98); border: 1px solid rgba(99,102,241,0.25); border-radius: 12px;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.5);
+    opacity: 0; visibility: hidden; transform: translateY(6px); transition: opacity .18s, transform .18s, visibility .18s;
+  }
+  .site-menu:hover .site-dropdown, .site-menu:focus-within .site-dropdown, .site-menu.toque .site-dropdown {
+    opacity: 1; visibility: visible; transform: none;
+  }
+  .site-menu:hover .site-menu-btn i, .site-menu.toque .site-menu-btn i { transform: rotate(180deg); }
+  .site-dropdown a {
+    display: flex; align-items: center; gap: .8rem; padding: .65rem .8rem; border-radius: 8px;
+    color: #c8cde8; text-decoration: none; font-size: .88rem; font-weight: 600; transition: background .15s;
+  }
+  .site-dropdown a:hover, .site-dropdown a.ativo { background: rgba(99,102,241,0.12); }
+  .site-dropdown i { width: 1.1rem; text-align: center; color: #818cf8; }
+  .site-dropdown small { display: block; font-weight: 400; font-size: .74rem; color: #6868a0; margin-top: .1rem; }
+
+  .site-actions { display: flex; align-items: center; gap: .75rem; }
+  .site-cta {
+    display: inline-flex; align-items: center; gap: .45rem;
+    background: rgba(37,211,102,0.1); border: 1px solid rgba(37,211,102,0.35); color: #86efac;
+    padding: .35rem .9rem; border-radius: 6px; font-size: .8rem; font-weight: 600; text-decoration: none;
+    white-space: nowrap; transition: background .2s;
+  }
+  .site-cta:hover { background: rgba(37,211,102,0.18); }
+
+  .site-burger {
+    display: none; width: 40px; height: 40px; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px;
+    background: rgba(255,255,255,0.03); cursor: pointer; flex-direction: column; align-items: center;
+    justify-content: center; gap: 5px; padding: 0;
+  }
+  .site-burger span { display: block; width: 18px; height: 2px; background: #c8cde8; border-radius: 2px; transition: transform .2s, opacity .2s; }
+  .aberto .site-burger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .aberto .site-burger span:nth-child(2) { opacity: 0; }
+  .aberto .site-burger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .site-mobile {
+    display: none; flex-direction: column; padding: .5rem 1.25rem 1.25rem;
+    border-top: 1px solid rgba(255,255,255,0.06); max-height: calc(100vh - 56px); overflow-y: auto;
+  }
+  .site-mobile:not([hidden]) { display: flex; }
+  .site-mobile-titulo {
+    font-family: var(--mono); font-size: .68rem; letter-spacing: .14em; text-transform: uppercase;
+    color: #6366f1; margin: 1rem 0 .25rem;
+  }
+  .site-mobile-link {
+    display: flex; align-items: center; gap: .7rem; padding: .7rem .5rem; border-radius: 8px;
+    color: #c8cde8; text-decoration: none; font-size: .95rem; font-weight: 600;
+  }
+  .site-mobile-link i { width: 1.2rem; text-align: center; color: #818cf8; }
+  .site-mobile-link:hover, .site-mobile-link.ativo { background: rgba(99,102,241,0.12); }
+
+  @media (max-width: 860px) {
+    .site-links { display: none; }
+    .site-burger { display: flex; }
+  }
+  @media (max-width: 480px) {
+    .site-nav-inner { padding: 0 1.25rem; }
+    .site-cta span { display: none; }
+    .site-cta { padding: .4rem .6rem; }
+  }
+</style>

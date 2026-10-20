@@ -1,0 +1,57 @@
+---
+import { whatsappUrl } from "../data/contact";
+import { solucoes } from "../data/solucoes";
+---
+
+<section id="solucoes" style="padding:7rem 2rem;max-width:72rem;margin:0 auto;border-top:1px solid rgba(255,255,255,0.06);">
+  <div class="fade-up">
+    <p class="section-label">Soluções</p>
+    <h2 style="font-size:2.2rem;font-weight:800;color:#e2e8f0;letter-spacing:-.03em;">Como eu posso ajudar</h2>
+    <div class="section-line"></div>
+    <p class="sol-intro">
+      Três frentes de trabalho, cada uma com a sua página. Escolha a que fala com o seu momento.
+    </p>
+  </div>
+
+  <div class="sol-grid">
+    {solucoes.map((s, i) => (
+      <a href={s.href} class="card-gradient-border fade-up sol-card" style={`transition-delay:${i * 0.1}s`}>
+        <div class="sol-icon"><i class={s.icon}></i></div>
+        <h3>{s.titulo}</h3>
+        <p>{s.desc}</p>
+        <span class="sol-para"><span>para</span> {s.para}</span>
+        <span class="sol-link">Conhecer a solução →</span>
+      </a>
+    ))}
+  </div>
+
+  <div class="fade-up sol-cta">
+    <a href={whatsappUrl("Olá, Alexandre! Não sei qual solução se encaixa no meu caso, pode me ajudar?")} target="_blank" rel="noopener" class="sol-btn">
+      <i class="fa-brands fa-whatsapp"></i> Não sei qual escolher
+    </a>
+  </div>
+</section>
+
+<style>
+  .sol-intro { color: #8080a8; font-size: .97rem; line-height: 1.85; max-width: 640px; margin: -1rem 0 2.5rem; }
+  .sol-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+  .sol-card { padding: 1.75rem; display: flex; flex-direction: column; gap: .75rem; text-decoration: none; }
+  .sol-icon {
+    width: 42px; height: 42px; border-radius: 10px; background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.25);
+    display: flex; align-items: center; justify-content: center; color: #818cf8; font-size: 1.05rem;
+  }
+  .sol-card h3 { font-size: 1.1rem; font-weight: 800; color: #e2e8f0; letter-spacing: -.01em; }
+  .sol-card p { font-size: .88rem; line-height: 1.75; color: #7070a0; }
+  .sol-para { font-size: .76rem; color: #67e8f9; margin-top: auto; }
+  .sol-para span { font-family: var(--mono); color: #4a4a68; margin-right: .25rem; }
+  .sol-link { font-family: var(--mono); font-size: .8rem; font-weight: 600; color: #818cf8; margin-top: .25rem; transition: color .2s; }
+  .sol-card:hover .sol-link { color: #c7d2fe; }
+  .sol-cta { margin-top: 2.5rem; text-align: center; }
+  .sol-btn {
+    display: inline-flex; align-items: center; gap: .5rem; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.12);
+    color: #a0a0c8; padding: .7rem 1.6rem; border-radius: 8px; font-weight: 600; font-size: .9rem; text-decoration: none; transition: all .2s;
+  }
+  .sol-btn:hover { border-color: rgba(99,102,241,0.5); color: #e2e8f0; transform: translateY(-2px); }
+  @media (max-width: 1000px) { .sol-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 480px) { .sol-btn { width: 100%; justify-content: center; } }
+</style>

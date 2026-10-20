@@ -1,6 +1,9 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import { EMAIL, whatsappUrl } from "../../data/contact";
+import SiteNav from "../SiteNav.astro";
+import SiteFooter from "../SiteFooter.astro";
+import { whatsappUrl } from "../../data/contact";
+import { solucoes } from "../../data/solucoes";
 import "../../styles/landing.css";
 
 interface Props {
@@ -12,37 +15,33 @@ interface Props {
 
 const { title, description, ctaMensagem } = Astro.props;
 const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
-
-const links = [
-  { href: "/ia-para-empresas/", label: "Empresas" },
-  { href: "/clinicas/", label: "Clínicas" },
-  { href: "/engenharia-de-ia/", label: "Times de tecnologia" },
-];
-const atual = Astro.url.pathname;
+const outras = solucoes.filter(s => s.href !== Astro.url.pathname);
 ---
 
 <Layout title={title} description={description} canonical={canonical}>
-  <header class="lp-nav">
-    <div class="lp-nav-inner">
-      <a href="/" class="lp-logo">&lt;<span class="logo-name">ac</span> <span class="logo-slash">/</span>&gt;</a>
-      <nav class="lp-nav-links" aria-label="Soluções">
-        {links.map(l => (
-          <a href={l.href} class:list={["lp-nav-link", { ativo: atual === l.href }]} aria-current={atual === l.href ? "page" : undefined}>{l.label}</a>
-        ))}
-      </nav>
-      <a href={whatsappUrl(ctaMensagem)} target="_blank" rel="noopener" class="lp-nav-cta">
-        <i class="fa-brands fa-whatsapp"></i><span>Falar no WhatsApp</span>
-      </a>
-    </div>
-  </header>
+  <SiteNav ctaMensagem={ctaMensagem} />
 
-  <main>
+  <main style="padding-top: 3.5rem;">
     <slot />
+
+    <section class="lp-section">
+      <div class="lp-wrap">
+        <p class="section-label">Outras soluções</p>
+        <div class="lp-portas">
+          {outras.map(s => (
+            <a href={s.href} class="card-gradient-border lp-porta">
+              <span class="lp-plano-tag"><i class={s.icon}></i> {s.para}</span>
+              <h3>{s.titulo}</h3>
+              <p>{s.desc}</p>
+            </a>
+          ))}
+        </div>
+        <p class="lp-sub-sm" style="margin:1.5rem 0 0;"><a href="/#solucoes" class="lp-card-link">← Todas as soluções</a></p>
+      </div>
+    </section>
   </main>
 
-  <footer class="lp-footer">
-    Alexandre Campos &copy; {new Date().getFullYear()} · Campo Grande/MS · <a href={`mailto:${EMAIL}`}>{EMAIL}</a> · <a href="/">portfólio</a>
-  </footer>
+  <SiteFooter />
 
   <a href={whatsappUrl(ctaMensagem)} target="_blank" rel="noopener" class="lp-float" aria-label="Falar no WhatsApp">
     <i class="fa-brands fa-whatsapp"></i>

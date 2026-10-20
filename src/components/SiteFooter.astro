@@ -1,0 +1,58 @@
+---
+import { EMAIL, PHONE_DISPLAY, whatsappUrl } from "../data/contact";
+import { solucoes } from "../data/solucoes";
+---
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="site-footer-col site-footer-marca">
+      <a href="/" class="site-footer-logo">&lt;<span>ac</span> /&gt;</a>
+      <p>Alexandre Campos<br />Engenheiro de Software & IA<br />Campo Grande/MS · atendimento em todo o Brasil</p>
+    </div>
+    <div class="site-footer-col">
+      <h4>Soluções</h4>
+      {solucoes.map(s => <a href={s.href}>{s.label}</a>)}
+    </div>
+    <div class="site-footer-col">
+      <h4>Portfólio</h4>
+      <a href="/#sobre">Sobre</a>
+      <a href="/#projetos">Projetos</a>
+      <a href="/#palestras">Palestras</a>
+      <a href="/#stack">Stack</a>
+    </div>
+    <div class="site-footer-col">
+      <h4>Contato</h4>
+      <a href={whatsappUrl()} target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> {PHONE_DISPLAY}</a>
+      <a href={`mailto:${EMAIL}`}><i class="fa-solid fa-envelope"></i> {EMAIL}</a>
+      <a href="https://www.linkedin.com/in/alexandre-campos-3725b18b/" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+      <a href="https://github.com/alexandrecampos-dev" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a>
+    </div>
+  </div>
+  <p class="site-footer-base">Alexandre Campos &copy; {new Date().getFullYear()} · alexandrecamposia.com.br</p>
+</footer>
+
+<style>
+  .site-footer {
+    position: relative; z-index: 1; border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 3.5rem 2rem 1.5rem; color: #6868a0;
+  }
+  .site-footer-inner {
+    max-width: 72rem; margin: 0 auto; display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.2fr; gap: 2rem;
+  }
+  .site-footer-col { display: flex; flex-direction: column; gap: .5rem; }
+  .site-footer-col h4 {
+    font-family: var(--mono); font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: #818cf8; margin-bottom: .35rem;
+  }
+  .site-footer-col a { color: #8f8fbc; text-decoration: none; font-size: .86rem; display: inline-flex; align-items: center; gap: .5rem; transition: color .2s; }
+  .site-footer-col a:hover { color: #e2e8f0; }
+  .site-footer-col a i { color: #6366f1; width: 1rem; text-align: center; }
+  .site-footer-marca p { font-size: .84rem; line-height: 1.75; }
+  .site-footer-logo { font-family: var(--mono); font-size: 1rem; font-weight: 600; color: #818cf8; text-decoration: none; margin-bottom: .5rem; }
+  .site-footer-logo span { color: #c8cde8; }
+  .site-footer-base {
+    max-width: 72rem; margin: 2.5rem auto 0; padding-top: 1.25rem; border-top: 1px solid rgba(255,255,255,0.05);
+    font-family: var(--mono); font-size: .74rem; color: #3a3a58; text-align: center;
+  }
+  @media (max-width: 860px) { .site-footer-inner { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 480px) { .site-footer { padding: 2.5rem 1.25rem 1.25rem; } .site-footer-inner { grid-template-columns: 1fr; } }
+</style>
