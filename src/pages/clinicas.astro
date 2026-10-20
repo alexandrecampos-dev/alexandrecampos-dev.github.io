@@ -1,0 +1,221 @@
+---
+import LandingLayout from "../components/landing/LandingLayout.astro";
+import QuemFaz from "../components/landing/QuemFaz.astro";
+import Demonstracao from "../components/landing/Demonstracao.astro";
+import ChamadaFinal from "../components/landing/ChamadaFinal.astro";
+import { whatsappUrl } from "../data/contact";
+
+const ctaMsg = "Olá, Alexandre! Tenho uma clínica e quero conhecer o assistente de IA para WhatsApp.";
+
+const trust = [
+  { icon: "fa-brands fa-whatsapp", text: "API oficial do WhatsApp" },
+  { icon: "fa-solid fa-shield-halved", text: "Não dá diagnóstico nem fala de remédio" },
+  { icon: "fa-solid fa-location-dot", text: "Campo Grande/MS" },
+  { icon: "fa-solid fa-file-signature", text: "Proposta com preço fechado" },
+];
+
+const dores = [
+  { q: "Mensagem chega às 22h e ninguém responde?", a: "O paciente que não recebe resposta procura outra clínica. O assistente responde na hora, todos os dias." },
+  { q: "A recepção vive presa no WhatsApp?", a: "Convênio, valor, endereço, preparo de exame: as mesmas perguntas, o dia inteiro. O assistente cuida delas e a equipe atende quem está na clínica." },
+  { q: "Consulta esquecida vira horário vazio?", a: "Confirmação e lembrete automáticos no dia anterior, com a opção de remarcar ali mesmo e liberar o horário." },
+];
+
+const funcoes = [
+  { icon: "fa-solid fa-comments", t: "Responde 24h", d: "Convênios, valores, horários, endereço e preparo de consultas e exames, com as informações aprovadas pela clínica." },
+  { icon: "fa-solid fa-calendar-check", t: "Agenda conversando", d: "Mostra os horários livres, marca e remarca. O paciente não precisa ligar nem esperar." },
+  { icon: "fa-solid fa-bell", t: "Confirma e lembra", d: "Envia o lembrete no dia anterior e pede confirmação. Se o paciente não puder, oferece outro horário." },
+  { icon: "fa-solid fa-user-nurse", t: "Passa para a equipe", d: "Pergunta clínica, reclamação ou caso fora do padrão vai direto para a recepção, com o histórico da conversa." },
+  { icon: "fa-brands fa-telegram", t: "Equipe no Telegram", d: "Bot interno com a agenda do dia, alertas de cancelamento e pedidos de atendimento humano." },
+  { icon: "fa-solid fa-shield-halved", t: "Regras de segurança", d: "Não dá diagnóstico, não fala de medicamento ou dose e não acessa prontuário. Em sinal de emergência, orienta ligar 192." },
+];
+
+const planos = [
+  {
+    nome: "Essencial",
+    tag: "Atendimento",
+    itens: ["Assistente no WhatsApp (API oficial)", "Base de conhecimento da clínica", "Atendimento 24h", "Transferência para a recepção", "Até 1h de ajustes por mês"],
+  },
+  {
+    nome: "Agenda",
+    tag: "Mais pedido",
+    destaque: true,
+    itens: ["Tudo do Essencial", "Agendamento por conversa, integrado à agenda", "Confirmação e lembrete automáticos", "Até 2h de ajustes por mês"],
+  },
+  {
+    nome: "Completo",
+    tag: "Clínica e equipe",
+    itens: ["Tudo do Agenda", "Bot da equipe no Telegram", "Canal Telegram para pacientes", "Pós-consulta e relatório mensal", "Até 3h de ajustes por mês"],
+  },
+];
+
+const passos = [
+  { t: "Teste gratuito", d: "Configuro um assistente de teste com as informações da sua clínica, para você usar no celular." },
+  { t: "Proposta fechada", d: "Plano, prazo e valor por escrito. Sem surpresa no meio do caminho." },
+  { t: "Implantação", d: "Base de conhecimento, regras, agenda e testes com a sua equipe antes de entrar no ar." },
+  { t: "Acompanhamento", d: "Monitoro as conversas reais, ajusto as respostas e envio o relatório." },
+];
+
+const faq = [
+  { q: "Quanto custa?", a: "Os planos começam em R$ 2.900 de implantação e R$ 490 por mês, que incluem hospedagem, a IA, monitoramento e suporte. O valor exato vem na proposta, conforme o plano e as integrações." },
+  { q: "Meu sistema já manda lembrete. Ainda faz sentido?", a: "Sim. Mantemos o lembrete do seu sistema, e o assistente cuida do resto: responde dúvidas a qualquer hora e marca consultas conversando, sem o paciente precisar ligar. O plano Essencial resolve isso." },
+  { q: "Paciente não gosta de falar com robô.", a: "Ele não fica preso no robô. O assistente resolve na hora o que é simples e passa para a recepção quando precisa. Fora do horário, a alternativa hoje é o paciente ficar sem resposta." },
+  { q: "E se a IA responder algo errado?", a: "Ela só responde com base nas informações que a clínica aprovou, segue regras de segurança e transfere quando não deve decidir sozinha. Você revisa tudo antes de o assistente entrar no ar." },
+  { q: "E a LGPD?", a: "O assistente não acessa prontuário. Ele trabalha com a agenda e com informações públicas da clínica, e os dados ficam em serviços com contrato. Isso fica documentado na proposta." },
+  { q: "Vou perder o número de WhatsApp da clínica?", a: "Não. O número continua da clínica. A migração para a API oficial do WhatsApp é combinada antes, no momento mais tranquilo para a recepção." },
+  { q: "Quanto tempo leva?", a: "A partir de 20 dias úteis, incluindo a verificação do número na Meta e os testes com a sua equipe." },
+];
+---
+
+<LandingLayout
+  title="Assistente de IA no WhatsApp para Clínicas em Campo Grande/MS | Alexandre Campos"
+  description="Assistente de IA para clínicas e consultórios: responde pacientes 24h, agenda, confirma consultas e reduz faltas no WhatsApp e no Telegram. Campo Grande/MS."
+  ctaMensagem={ctaMsg}
+>
+  <section class="lp-hero bg-grid">
+    <div class="blob-1" style="top:-200px;left:-250px;"></div>
+    <div class="blob-2" style="top:60px;right:-200px;"></div>
+    <div class="lp-wrap lp-hero-inner">
+      <p class="lp-kicker animate-fade-in animate-delay-1">Assistente de IA para clínicas · Campo Grande/MS</p>
+      <h1 class="lp-h1 animate-fade-in animate-delay-2">
+        Sua clínica atendendo e agendando no WhatsApp <span class="text-gradient">24 horas por dia</span>.
+      </h1>
+      <p class="lp-sub animate-fade-in animate-delay-3">
+        Um assistente de inteligência artificial que responde pacientes, marca consultas e confirma no dia anterior,
+        sem sobrecarregar a recepção.
+      </p>
+      <div class="lp-ctas animate-fade-in animate-delay-4">
+        <a href={whatsappUrl(ctaMsg)} target="_blank" rel="noopener" class="lp-btn">
+          <i class="fa-brands fa-whatsapp"></i> Quero um teste gratuito
+        </a>
+        <a href="#planos" class="lp-btn-ghost">Ver planos</a>
+      </div>
+      <ul class="lp-trust animate-fade-in animate-delay-4">
+        {trust.map(t => <li><i class={t.icon}></i>{t.text}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="lp-section">
+    <div class="lp-wrap">
+      <div class="fade-up">
+        <p class="section-label">O problema</p>
+        <h2 class="lp-h2">O que acontece hoje no WhatsApp da clínica</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="lp-grid-3">
+        {dores.map((d, i) => (
+          <div class="card-gradient-border fade-up lp-pain" style={`transition-delay:${i * 0.08}s`}>
+            <h3>{d.q}</h3>
+            <p>{d.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="lp-section">
+    <div class="lp-wrap">
+      <div class="fade-up">
+        <p class="section-label">O que ele faz</p>
+        <h2 class="lp-h2">Funções do assistente</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="lp-grid-3">
+        {funcoes.map((f, i) => (
+          <div class="card-gradient-border fade-up lp-card" style={`transition-delay:${i * 0.06}s`}>
+            <div class="lp-icon"><i class={f.icon}></i></div>
+            <h3>{f.t}</h3>
+            <p>{f.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Demonstracao
+    titulo="Converse com o assistente como um paciente"
+    texto="A demonstração é uma clínica fictícia: pergunte sobre convênio, marque uma consulta e veja o lembrete com botões."
+    ctaMensagem="Olá, Alexandre! Tenho uma clínica e quero ver a demonstração do assistente."
+  />
+
+  <section id="planos" class="lp-section">
+    <div class="lp-wrap">
+      <div class="fade-up">
+        <p class="section-label">Planos</p>
+        <h2 class="lp-h2">Escolha o tamanho certo para a sua clínica</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="lp-grid-3">
+        {planos.map((p, i) => (
+          <div class:list={["card-gradient-border fade-up lp-plano", { destaque: p.destaque }]} style={`transition-delay:${i * 0.08}s`}>
+            <span class="lp-plano-tag">{p.tag}</span>
+            <h3>{p.nome}</h3>
+            <ul>{p.itens.map(item => <li>{item}</li>)}</ul>
+            <a href={whatsappUrl(`Olá, Alexandre! Tenho uma clínica e quero saber mais sobre o plano ${p.nome}.`)} target="_blank" rel="noopener" class="lp-card-link">
+              <i class="fa-brands fa-whatsapp"></i> Quero este plano
+            </a>
+          </div>
+        ))}
+      </div>
+      <div class="lp-preco fade-up">
+        <p>
+          Planos a partir de <strong>R$ 2.900</strong> de implantação + <strong>R$ 490/mês</strong>
+          <small>A mensalidade inclui hospedagem, a IA, monitoramento e suporte. Valor fechado na proposta, conforme o plano.</small>
+        </p>
+        <a href={whatsappUrl("Olá, Alexandre! Quero uma proposta do assistente de IA para a minha clínica.")} target="_blank" rel="noopener" class="lp-btn">
+          <i class="fa-brands fa-whatsapp"></i> Pedir proposta
+        </a>
+      </div>
+      <p class="lp-aviso fade-up">
+        <strong>Programa piloto:</strong> para as 3 primeiras clínicas, o 1º mês de mensalidade é grátis, em troca de um
+        depoimento sobre o resultado.
+      </p>
+    </div>
+  </section>
+
+  <section class="lp-section">
+    <div class="lp-wrap">
+      <div class="fade-up">
+        <p class="section-label">Como funciona</p>
+        <h2 class="lp-h2">Do teste gratuito ao assistente no ar</h2>
+        <div class="section-line"></div>
+      </div>
+      <ol class="lp-steps">
+        {passos.map((s, i) => (
+          <li class="fade-up" style={`transition-delay:${i * 0.08}s`}>
+            <span class="lp-step-n">0{i + 1}</span>
+            <h3>{s.t}</h3>
+            <p>{s.d}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <QuemFaz texto="Programo desde 2012 e hoje trabalho com IA generativa em produção. Para clínicas, desenho o assistente junto com a recepção: ele responde o que a clínica aprovou, segue regras de segurança e passa para a equipe tudo o que precisa de gente." />
+
+  <section class="lp-section">
+    <div class="lp-wrap lp-faq-wrap">
+      <div class="fade-up">
+        <p class="section-label">Dúvidas</p>
+        <h2 class="lp-h2">Perguntas frequentes</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="lp-faq fade-up">
+        {faq.map(f => (
+          <details>
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <ChamadaFinal
+    titulo="Quer ver o assistente com as informações da sua clínica?"
+    texto="Configuro um teste gratuito para você usar no celular, sem compromisso."
+    ctaMensagem={ctaMsg}
+    assuntoEmail="Assistente de IA para a minha clínica"
+  />
+</LandingLayout>

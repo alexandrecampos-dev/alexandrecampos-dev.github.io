@@ -8,7 +8,7 @@ export interface Service {
 export const services: Service[] = [
   {
     icon: "fa-brands fa-whatsapp",
-    title: "Assistente de IA no WhatsApp",
+    title: "Assistente de IA no WhatsApp e Telegram",
     desc: "Atende, agenda, confirma horários e responde dúvidas 24h, e passa para um humano quando precisa.",
     for: "Clínicas, imobiliárias, varejo e serviços",
   },

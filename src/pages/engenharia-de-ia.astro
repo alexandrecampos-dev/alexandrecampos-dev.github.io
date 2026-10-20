@@ -1,0 +1,180 @@
+---
+import LandingLayout from "../components/landing/LandingLayout.astro";
+import QuemFaz from "../components/landing/QuemFaz.astro";
+import ChamadaFinal from "../components/landing/ChamadaFinal.astro";
+import { whatsappUrl } from "../data/contact";
+
+const ctaMsg = "Olá, Alexandre! Sou de um time de tecnologia e quero agendar uma call técnica de 30 min sobre IA.";
+
+const trust = [
+  { icon: "fa-solid fa-code", text: ".NET desde 2012" },
+  { icon: "fa-solid fa-robot", text: "LLMs, RAG e agentes em produção" },
+  { icon: "fa-solid fa-vial-circle-check", text: "Entrega com testes e avaliação" },
+  { icon: "fa-solid fa-globe", text: "Remoto, todo o Brasil" },
+];
+
+const ofertas = [
+  { icon: "fa-solid fa-magnifying-glass", t: "RAG corporativo com governança", d: "Busca em linguagem natural sobre documentos e bases internas, com fonte citada, controle de acesso por usuário e avaliação de qualidade das respostas." },
+  { icon: "fa-solid fa-plug", t: "Servidores MCP para os seus sistemas", d: "Seu ERP, CRM ou API exposto como ferramentas tipadas para Claude, Copilot e agentes, em .NET, com autenticação e auditoria." },
+  { icon: "fa-solid fa-diagram-project", t: "Agentes com ferramentas e guardrails", d: "Tool calling com as regras no código e não no prompt, guardrails de entrada e saída, limites de custo e humano no controle." },
+  { icon: "fa-solid fa-user-shield", t: "Auditoria de apps de IA", d: "Prompt injection, vazamento de dados, alucinação e custo: diagnóstico, correções e uma suíte de avaliação automatizada para não regredir." },
+  { icon: "fa-solid fa-cubes", t: "IA dentro do seu produto .NET", d: "Microsoft.Extensions.AI com provedor trocável (OpenAI, Azure OpenAI, Anthropic, Groq, xAI, Ollama), observabilidade e testes sem rede." },
+  { icon: "fa-solid fa-chalkboard-user", t: "Treinamento e mentoria do time", d: "Workshop prático e acompanhamento para o seu time construir com IA do jeito certo, a partir do código de vocês." },
+];
+
+const passos = [
+  { t: "Call técnica de 30 min", d: "Entendo o produto, a arquitetura e o problema. Digo com franqueza onde a IA ajuda e onde não ajuda." },
+  { t: "Prova de conceito", d: "Escopo curto, com critério de sucesso combinado antes (qualidade, custo por chamada, latência)." },
+  { t: "Entrega para produção", d: "Código revisável, testes automatizados, avaliação das respostas, logs e documentação de arquitetura." },
+  { t: "Transferência", d: "O time de vocês assume: pair programming, ADRs e o passo a passo para evoluir sem depender de mim." },
+];
+
+const provas = [
+  "Clean Architecture em 4 projetos (domínio, aplicação, infraestrutura e canal), com portas assíncronas",
+  "Microsoft.Extensions.AI com laço de ferramentas e provedor trocável por configuração",
+  "Ferramentas ligadas à conversa: o modelo não consegue agir em nome de outro usuário",
+  "Guardrails em 4 camadas, incluindo marcador canário contra vazamento do prompt",
+  "127 testes automatizados, inclusive do laço de ferramentas real com modelo roteirizado",
+  "Tempo máximo por mensagem, filas ordenadas por conversa e desligamento sem perder mensagens",
+];
+
+const repositorios = [
+  { nome: "dotnet-rag-documents", d: "Pipeline RAG completo em .NET 9 com pgvector e respostas com fonte citada.", url: "https://github.com/alexandrecampos-dev/dotnet-rag-documents" },
+  { nome: "dotnet-mcp-library", d: "Servidor MCP em .NET 9 expondo um domínio como ferramentas tipadas para o Claude.", url: "https://github.com/alexandrecampos-dev/dotnet-mcp-library" },
+];
+
+const formatos = [
+  { t: "Projeto fechado", d: "Escopo, prazo e preço definidos. Ideal para PoC, MCP ou auditoria." },
+  { t: "Alocação no time", d: "Horas mensais dedicadas ao produto de vocês, trabalhando no repositório e nos rituais do time." },
+  { t: "Mentoria e treinamento", d: "Workshop de 4 a 8 h e sessões de acompanhamento." },
+];
+
+const stack = ["C#", ".NET 9/10", "Microsoft.Extensions.AI", "MCP", "RAG", "pgvector", "PostgreSQL", "Azure OpenAI", "OpenAI", "Anthropic", "Groq", "Ollama", "Python", "FastAPI", "Angular", "Docker", "Azure", "AWS", "OpenTelemetry"];
+---
+
+<LandingLayout
+  title="Engenharia de IA para Times de Tecnologia: RAG, MCP e Agentes | Alexandre Campos"
+  description="RAG corporativo, servidores MCP em .NET, agentes com guardrails e auditoria de apps de IA para software houses, SaaS e times de TI. Entrega com testes e avaliação."
+  ctaMensagem={ctaMsg}
+>
+  <section class="lp-hero bg-grid">
+    <div class="blob-1" style="top:-200px;left:-250px;"></div>
+    <div class="blob-2" style="top:60px;right:-200px;"></div>
+    <div class="lp-wrap lp-hero-inner">
+      <p class="lp-kicker animate-fade-in animate-delay-1">Engenharia de IA · para times de tecnologia</p>
+      <h1 class="lp-h1 animate-fade-in animate-delay-2">
+        IA no seu produto, <span class="text-gradient">pronta para produção</span>.
+      </h1>
+      <p class="lp-sub animate-fade-in animate-delay-3">
+        RAG, agentes, servidores MCP e guardrails para software houses, SaaS e times de TI. Entrego com arquitetura
+        limpa, testes e avaliação das respostas, e o seu time assume sem depender de mim.
+      </p>
+      <div class="lp-ctas animate-fade-in animate-delay-4">
+        <a href={whatsappUrl(ctaMsg)} target="_blank" rel="noopener" class="lp-btn">
+          <i class="fa-brands fa-whatsapp"></i> Agendar call técnica de 30 min
+        </a>
+        <a href="#prova" class="lp-btn-ghost">Ver como eu construo</a>
+      </div>
+      <ul class="lp-trust animate-fade-in animate-delay-4">
+        {trust.map(t => <li><i class={t.icon}></i>{t.text}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="lp-section">
+    <div class="lp-wrap">
+      <div class="fade-up">
+        <p class="section-label">O que eu entrego</p>
+        <h2 class="lp-h2">Serviços</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="lp-grid-3">
+        {ofertas.map((o, i) => (
+          <div class="card-gradient-border fade-up lp-card" style={`transition-delay:${i * 0.06}s`}>
+            <div class="lp-icon"><i class={o.icon}></i></div>
+            <h3>{o.t}</h3>
+            <p>{o.d}</p>
+            <a href={whatsappUrl(`Olá, Alexandre! Quero conversar sobre: ${o.t}.`)} target="_blank" rel="noopener" class="lp-card-link">
+              <i class="fa-brands fa-whatsapp"></i> Conversar sobre isso
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="prova" class="lp-section">
+    <div class="lp-wrap">
+      <div class="fade-up">
+        <p class="section-label">Como eu construo</p>
+        <h2 class="lp-h2">Exemplo: assistente de atendimento com agente e ferramentas</h2>
+        <div class="section-line"></div>
+        <p class="lp-sub-sm">
+          Um assistente para clínicas, que conversa, agenda, remarca e confirma consultas pelo Telegram. As decisões de
+          arquitetura são as mesmas que levo para o produto de vocês:
+        </p>
+      </div>
+      <ul class="lp-lista fade-up">
+        {provas.map(p => <li>{p}</li>)}
+      </ul>
+      <div class="lp-portas fade-up" style="margin-top:2rem;">
+        {repositorios.map(r => (
+          <a href={r.url} target="_blank" rel="noopener" class="card-gradient-border lp-porta">
+            <span class="lp-plano-tag"><i class="fa-brands fa-github"></i> código aberto</span>
+            <h3>{r.nome}</h3>
+            <p>{r.d}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="lp-section">
+    <div class="lp-wrap">
+      <div class="fade-up">
+        <p class="section-label">Como funciona</p>
+        <h2 class="lp-h2">Da conversa técnica ao time de vocês no comando</h2>
+        <div class="section-line"></div>
+      </div>
+      <ol class="lp-steps">
+        {passos.map((s, i) => (
+          <li class="fade-up" style={`transition-delay:${i * 0.08}s`}>
+            <span class="lp-step-n">0{i + 1}</span>
+            <h3>{s.t}</h3>
+            <p>{s.d}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="lp-section">
+    <div class="lp-wrap">
+      <div class="fade-up">
+        <p class="section-label">Formatos</p>
+        <h2 class="lp-h2">Como podemos trabalhar</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="lp-grid-3">
+        {formatos.map((f, i) => (
+          <div class="card-gradient-border fade-up lp-card" style={`transition-delay:${i * 0.08}s`}>
+            <h3>{f.t}</h3>
+            <p>{f.d}</p>
+          </div>
+        ))}
+      </div>
+      <div class="lp-chips fade-up" style="margin-top:2rem;">
+        {stack.map(s => <span>{s}</span>)}
+      </div>
+    </div>
+  </section>
+
+  <QuemFaz texto="Programo desde 2012 em C# e .NET, do .NET Framework ao .NET 10, e hoje trabalho com IA generativa em produção: agentes, RAG, servidores MCP e integração de LLMs a sistemas enterprise. Uso Clean Architecture, DDD e TDD, e trato prompt e avaliação como código: versionado, testado e revisado." />
+
+  <ChamadaFinal
+    titulo="Vamos conversar sobre a IA do seu produto?"
+    texto="Call técnica de 30 minutos, sem custo. Traga o problema e, se puder, a arquitetura atual."
+    ctaMensagem={ctaMsg}
+    assuntoEmail="Engenharia de IA para o nosso produto"
+  />
+</LandingLayout>

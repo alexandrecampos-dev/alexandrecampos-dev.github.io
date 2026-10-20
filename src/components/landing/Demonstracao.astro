@@ -1,0 +1,34 @@
+---
+import { DEMO_TELEGRAM_URL, whatsappUrl } from "../../data/contact";
+
+interface Props {
+  titulo: string;
+  texto: string;
+  /** Mensagem do WhatsApp quando ainda não há demo pública no Telegram. */
+  ctaMensagem: string;
+}
+
+const { titulo, texto, ctaMensagem } = Astro.props;
+const temDemoPublica = DEMO_TELEGRAM_URL.length > 0;
+---
+
+<section class="lp-section">
+  <div class="lp-wrap">
+    <div class="lp-demo fade-up">
+      <div>
+        <p class="section-label">Veja funcionando</p>
+        <h3>{titulo}</h3>
+        <p>{temDemoPublica ? texto : `${texto} Peça pelo WhatsApp e eu mostro ao vivo, em poucos minutos.`}</p>
+      </div>
+      {temDemoPublica ? (
+        <a href={DEMO_TELEGRAM_URL} target="_blank" rel="noopener" class="lp-btn">
+          <i class="fa-brands fa-telegram"></i> Testar a demo no Telegram
+        </a>
+      ) : (
+        <a href={whatsappUrl(ctaMensagem)} target="_blank" rel="noopener" class="lp-btn">
+          <i class="fa-brands fa-whatsapp"></i> Quero ver a demonstração
+        </a>
+      )}
+    </div>
+  </div>
+</section>

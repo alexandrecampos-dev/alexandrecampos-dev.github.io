@@ -1,0 +1,29 @@
+---
+import { EMAIL, PHONE_DISPLAY, whatsappUrl } from "../../data/contact";
+
+interface Props {
+  titulo: string;
+  texto: string;
+  ctaMensagem: string;
+  assuntoEmail: string;
+}
+
+const { titulo, texto, ctaMensagem, assuntoEmail } = Astro.props;
+---
+
+<section class="lp-section">
+  <div class="lp-wrap">
+    <div class="lp-final fade-up">
+      <h2>{titulo}</h2>
+      <p>{texto}</p>
+      <div class="lp-ctas lp-ctas-center">
+        <a href={whatsappUrl(ctaMensagem)} target="_blank" rel="noopener" class="lp-btn">
+          <i class="fa-brands fa-whatsapp"></i> WhatsApp {PHONE_DISPLAY}
+        </a>
+        <a href={`mailto:${EMAIL}?subject=${encodeURIComponent(assuntoEmail)}`} class="lp-btn-ghost">
+          <i class="fa-solid fa-envelope"></i> {EMAIL}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
