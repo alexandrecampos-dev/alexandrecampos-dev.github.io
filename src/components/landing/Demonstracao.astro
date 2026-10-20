@@ -10,25 +10,36 @@ interface Props {
 
 const { titulo, texto, ctaMensagem } = Astro.props;
 const temDemoPublica = DEMO_TELEGRAM_URL.length > 0;
+const VIDEO = "/video/demo-assistente-clinicas.mp4";
+const CAPA = "/video/demo-assistente-clinicas-capa.jpg";
 ---
 
 <section class="lp-section">
   <div class="lp-wrap">
     <div class="lp-demo fade-up">
-      <div>
+      <div class="lp-demo-texto">
         <p class="section-label">Veja funcionando</p>
         <h3>{titulo}</h3>
-        <p>{temDemoPublica ? texto : `${texto} Peça pelo WhatsApp e eu mostro ao vivo, em poucos minutos.`}</p>
+        <p>{texto}</p>
+        <p class="lp-demo-nota">
+          O vídeo ao lado mostra uma conversa real com o assistente: dúvida sobre convênio, agendamento, lembrete com
+          confirmação, pergunta sobre remédio e transferência para a recepção. Um minuto e meio, sem áudio.
+        </p>
+        {temDemoPublica ? (
+          <a href={DEMO_TELEGRAM_URL} target="_blank" rel="noopener" class="lp-btn">
+            <i class="fa-brands fa-telegram"></i> Testar a demo no Telegram
+          </a>
+        ) : (
+          <a href={whatsappUrl(ctaMensagem)} target="_blank" rel="noopener" class="lp-btn">
+            <i class="fa-brands fa-whatsapp"></i> Quero testar no meu celular
+          </a>
+        )}
       </div>
-      {temDemoPublica ? (
-        <a href={DEMO_TELEGRAM_URL} target="_blank" rel="noopener" class="lp-btn">
-          <i class="fa-brands fa-telegram"></i> Testar a demo no Telegram
-        </a>
-      ) : (
-        <a href={whatsappUrl(ctaMensagem)} target="_blank" rel="noopener" class="lp-btn">
-          <i class="fa-brands fa-whatsapp"></i> Quero ver a demonstração
-        </a>
-      )}
+      <!-- Vertical (9:16) como no celular. preload="none": os 6 MB só baixam quando a pessoa dá play. -->
+      <video class="lp-demo-video" controls playsinline preload="none" poster={CAPA} width="1080" height="1920">
+        <source src={VIDEO} type="video/mp4" />
+        Seu navegador não reproduz vídeo. <a href={VIDEO}>Baixe o vídeo da demonstração</a>.
+      </video>
     </div>
   </div>
 </section>
