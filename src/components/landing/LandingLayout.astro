@@ -11,9 +11,11 @@ interface Props {
   description: string;
   /** Mensagem pré-preenchida do WhatsApp nesta página (o anúncio e a página falam a mesma língua). */
   ctaMensagem: string;
+  /** Páginas que não são uma solução (ex.: programa de indicação) não listam "Outras soluções". */
+  semOutrasSolucoes?: boolean;
 }
 
-const { title, description, ctaMensagem } = Astro.props;
+const { title, description, ctaMensagem, semOutrasSolucoes = false } = Astro.props;
 const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
 const outras = solucoes.filter(s => s.href !== Astro.url.pathname);
 ---
@@ -24,6 +26,7 @@ const outras = solucoes.filter(s => s.href !== Astro.url.pathname);
   <main style="padding-top: 3.5rem;">
     <slot />
 
+    {!semOutrasSolucoes && (
     <section class="lp-section">
       <div class="lp-wrap">
         <p class="section-label">Outras soluções</p>
@@ -39,6 +42,7 @@ const outras = solucoes.filter(s => s.href !== Astro.url.pathname);
         <p class="lp-sub-sm" style="margin:1.5rem 0 0;"><a href="/#solucoes" class="lp-card-link">← Todas as soluções</a></p>
       </div>
     </section>
+    )}
   </main>
 
   <SiteFooter />

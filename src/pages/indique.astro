@@ -1,0 +1,180 @@
+---
+import LandingLayout from "../components/landing/LandingLayout.astro";
+import ChamadaFinal from "../components/landing/ChamadaFinal.astro";
+import { whatsappUrl } from "../data/contact";
+
+const VALOR = "R$ 300";
+const ctaMsg = "Olá, Alexandre! Quero indicar uma clínica para o programa de indicação.";
+
+// Mensagem que o parceiro encaminha para a clínica. Abre o WhatsApp sem número: a pessoa escolhe o contato.
+const msgParaClinica =
+  "Oi! Conheço um engenheiro aqui de Campo Grande, o Alexandre, que monta um atendente virtual para clínicas: " +
+  "ele responde o paciente no WhatsApp a qualquer hora, marca a consulta e manda lembrete no dia anterior para diminuir falta. " +
+  "Achei a cara da clínica. Olha o vídeo de 1 minuto: https://alexandrecamposia.com.br/clinicas/ " +
+  "Se quiser, ele faz um teste grátis com os dados da clínica. Posso passar seu contato para ele?";
+const encaminharUrl = `https://wa.me/?text=${encodeURIComponent(msgParaClinica)}`;
+
+const sinais = [
+  { icon: "fa-brands fa-whatsapp", t: "Recepção afogada no WhatsApp", d: "A equipe responde as mesmas perguntas o dia inteiro: convênio, valor, endereço, preparo de exame." },
+  { icon: "fa-solid fa-moon", t: "Paciente sem resposta à noite", d: "Mensagem que chega depois do expediente fica para o dia seguinte, e o paciente marca em outro lugar." },
+  { icon: "fa-solid fa-calendar-xmark", t: "Muita falta na agenda", d: "Consulta esquecida vira horário vazio, sem tempo de encaixar outra pessoa." },
+];
+
+const passos = [
+  { t: "Você encaminha", d: "Manda a mensagem pronta (ou o vídeo) para alguém que decide na clínica: dono, gerente ou coordenação." },
+  { t: "A clínica topa conversar", d: "Com a clínica avisada, você me passa o contato, ou passa o meu para ela. Eu cuido do resto: demonstração, teste gratuito e proposta." },
+  { t: "Fechou, você recebe", d: `${VALOR} por Pix, em até 5 dias depois do primeiro pagamento da clínica. Sem limite de indicações.` },
+];
+
+const faq = [
+  { q: "Preciso entender de tecnologia?", a: "Não. Você só apresenta. A explicação, a demonstração e a proposta são comigo." },
+  { q: "E se a clínica não fechar?", a: "Não tem custo nem compromisso para ninguém. A indicação só vale alguma coisa, para nós dois, se virar cliente." },
+  { q: "Posso indicar a clínica onde eu trabalho?", a: "Pode, desde que a clínica saiba que você me apresentou. É uma apresentação, não um segredo. Eu sempre digo quem indicou." },
+  { q: "Quem pode indicar?", a: "Qualquer pessoa: profissional de saúde, recepcionista, fornecedor, amigo de dono de clínica. Vale para clínicas e consultórios de qualquer especialidade." },
+  { q: "Como e quando recebo?", a: `${VALOR} por Pix, em até 5 dias úteis depois do primeiro pagamento da clínica. Eu te aviso no dia em que fechar.` },
+  { q: "O que exatamente a clínica contrata?", a: "Um assistente que atende no WhatsApp 24 h, agenda e confirma consultas. Planos a partir de R$ 2.900 de implantação e R$ 490 por mês. Os detalhes estão em alexandrecamposia.com.br/clinicas." },
+];
+---
+
+<LandingLayout
+  title="Indique uma clínica e ganhe R$ 300 | Alexandre Campos"
+  description="Programa de indicação: apresente o assistente de IA para uma clínica de Campo Grande e ganhe R$ 300 por clínica que fechar. Sem precisar entender de tecnologia."
+  ctaMensagem={ctaMsg}
+  semOutrasSolucoes
+>
+  <section class="lp-hero bg-grid">
+    <div class="blob-1" style="top:-200px;left:-250px;"></div>
+    <div class="blob-2" style="top:60px;right:-200px;"></div>
+    <div class="lp-wrap lp-hero-inner">
+      <p class="lp-kicker animate-fade-in animate-delay-1">Programa de indicação · Campo Grande/MS</p>
+      <h1 class="lp-h1 animate-fade-in animate-delay-2">
+        Conhece uma clínica afogada no WhatsApp? Indique e ganhe <span class="text-gradient">{VALOR}</span>.
+      </h1>
+      <p class="lp-sub animate-fade-in animate-delay-3">
+        Eu monto um atendente virtual que responde o paciente no WhatsApp da clínica a qualquer hora, marca a consulta
+        e manda o lembrete no dia anterior. Você só apresenta. Fechou, você recebe {VALOR} por Pix.
+      </p>
+      <div class="lp-ctas animate-fade-in animate-delay-4">
+        <a href={whatsappUrl(ctaMsg)} target="_blank" rel="noopener" class="lp-btn">
+          <i class="fa-brands fa-whatsapp"></i> Quero indicar uma clínica
+        </a>
+        <a href="#como-funciona" class="lp-btn-ghost">Como funciona</a>
+      </div>
+      <ul class="lp-trust animate-fade-in animate-delay-4">
+        <li><i class="fa-solid fa-coins"></i>{VALOR} por clínica que fechar</li>
+        <li><i class="fa-solid fa-face-smile"></i>Sem precisar entender de tecnologia</li>
+        <li><i class="fa-solid fa-infinity"></i>Sem limite de indicações</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="lp-section">
+    <div class="lp-wrap">
+      <div class="lp-demo fade-up">
+        <div class="lp-demo-texto">
+          <p class="section-label">O que eu faço, em uma frase</p>
+          <h3>Um atendente virtual que responde e marca consulta no WhatsApp da clínica, 24 horas por dia.</h3>
+          <p>
+            Ele diz se a clínica aceita o convênio, quanto custa, que horário tem livre, e já marca. No dia anterior, manda o
+            lembrete e pede confirmação, para cair o número de falta. Quando a pergunta é coisa de médico, ele passa para a recepção.
+          </p>
+          <p class="lp-demo-nota">O vídeo ao lado mostra uma conversa real com o assistente. Um minuto e meio, sem áudio.</p>
+          <a href={encaminharUrl} target="_blank" rel="noopener" class="lp-btn">
+            <i class="fa-brands fa-whatsapp"></i> Encaminhar para uma clínica
+          </a>
+        </div>
+        <video class="lp-demo-video" controls playsinline preload="none" poster="/video/demo-assistente-clinicas-capa.jpg" width="1080" height="1920">
+          <source src="/video/demo-assistente-clinicas.mp4" type="video/mp4" />
+          Seu navegador não reproduz vídeo. <a href="/video/demo-assistente-clinicas.mp4">Baixe o vídeo da demonstração</a>.
+        </video>
+      </div>
+    </div>
+  </section>
+
+  <section class="lp-section">
+    <div class="lp-wrap">
+      <div class="fade-up">
+        <p class="section-label">Para quem indicar</p>
+        <h2 class="lp-h2">Sinais de que a clínica precisa</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="lp-grid-3">
+        {sinais.map((s, i) => (
+          <div class="card-gradient-border fade-up lp-card" style={`transition-delay:${i * 0.08}s`}>
+            <div class="lp-icon"><i class={s.icon}></i></div>
+            <h3>{s.t}</h3>
+            <p>{s.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="como-funciona" class="lp-section">
+    <div class="lp-wrap">
+      <div class="fade-up">
+        <p class="section-label">Como funciona</p>
+        <h2 class="lp-h2">Três passos, nenhum deles técnico</h2>
+        <div class="section-line"></div>
+      </div>
+      <ol class="lp-steps lp-steps-3">
+        {passos.map((s, i) => (
+          <li class="fade-up" style={`transition-delay:${i * 0.08}s`}>
+            <span class="lp-step-n">0{i + 1}</span>
+            <h3>{s.t}</h3>
+            <p>{s.d}</p>
+          </li>
+        ))}
+      </ol>
+      <div class="lp-preco fade-up">
+        <p>
+          <strong>{VALOR} por clínica que fechar</strong>, pagos por Pix em até 5 dias depois do primeiro pagamento da clínica.
+          <small>A clínica sempre sabe quem a apresentou. Vale para clínicas e consultórios de qualquer especialidade.</small>
+        </p>
+        <a href={whatsappUrl(ctaMsg)} target="_blank" rel="noopener" class="lp-btn">
+          <i class="fa-brands fa-whatsapp"></i> Quero indicar
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="lp-section">
+    <div class="lp-wrap lp-faq-wrap">
+      <div class="fade-up">
+        <p class="section-label">Mensagem pronta</p>
+        <h2 class="lp-h2">É só encaminhar</h2>
+        <div class="section-line"></div>
+        <p class="lp-sub-sm">Se preferir, copie o texto abaixo e mande para a clínica do seu jeito.</p>
+      </div>
+      <blockquote class="lp-mensagem fade-up">{msgParaClinica}</blockquote>
+      <p class="fade-up" style="margin-top:1.25rem;">
+        <a href={encaminharUrl} target="_blank" rel="noopener" class="lp-btn-ghost"><i class="fa-brands fa-whatsapp"></i> Abrir no WhatsApp para encaminhar</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="lp-section">
+    <div class="lp-wrap lp-faq-wrap">
+      <div class="fade-up">
+        <p class="section-label">Dúvidas</p>
+        <h2 class="lp-h2">Perguntas frequentes</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="lp-faq fade-up">
+        {faq.map(f => (
+          <details>
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <ChamadaFinal
+    titulo="Lembrou de alguma clínica?"
+    texto="Me chama no WhatsApp com o nome da clínica. Eu te explico o próximo passo em 2 minutos."
+    ctaMensagem={ctaMsg}
+    assuntoEmail="Indicação de clínica"
+  />
+</LandingLayout>
